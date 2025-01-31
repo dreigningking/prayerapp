@@ -202,16 +202,16 @@
                             <!-- Links -->
                             <ul class="foo-links clearfix">
                                 <li>
-                                    <p><a href="about.html">About Us</a></p>
+                                    <p><a href="{{url('/')}}">About Us</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="careers.html">Careers</a></p>
+                                    <p><a href="{{url('/')}}#tools">Tools</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="blog-listing.html">Our Blog</a></p>
+                                    <p><a href="{{url('/')}}#tax-compliance">Tax Compliance</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="contacts.html">Contact Us</a></p>
+                                    <p><a href="{{url('contact')}}">Contact Us</a></p>
                                 </li>
                             </ul>
 
@@ -229,13 +229,13 @@
                             <!-- Links -->
                             <ul class="foo-links clearfix">
                                 <li>
-                                    <p><a href="features.html">Integration</a></p>
+                                    <p><a href="{{url('clientele')}}">Clientele</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="reviews.html">Customers</a></p>
+                                    <p><a href="{{url('accountants')}}">Accountants</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="pricing-1.html">Pricing</a></p>
+                                    <p><a href="{{url('tax-authorities')}}">Tax Authorities</a></p>
                                 </li>
                                 <li>
                                     <p><a href="help-center.html">Help Center</a></p>
@@ -256,13 +256,13 @@
                             <!-- Links -->
                             <ul class="foo-links clearfix">
                                 <li>
-                                    <p><a href="terms.html">Terms of Use</a></p>
+                                    <p><a href="#">Terms of Use</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="privacy.html">Privacy Policy</a></p>
+                                    <p><a href="#">Privacy Policy</a></p>
                                 </li>
                                 <li>
-                                    <p><a href="cookies.html">Cookie Policy</a></p>
+                                    <p><a href="#">Cookie Policy</a></p>
                                 </li>
                                 <li>
                                     <p><a href="#">Site Map</a></p>
@@ -282,7 +282,7 @@
 
                             <!-- Mail Link -->
                             <p class="footer-mail-link ico-25">
-                                <a href="mailto:yourdomain@mail.com">hello@yourdomain.com</a>
+                                <a href="mailto:yourdomain@mail.com">hello@gbeya.com</a>
                             </p>
 
                             <!-- Social Links -->

@@ -878,13 +878,13 @@
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/canada.jpg')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/canada.png')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/australia.jpg')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/australia.png')}}" alt="brand-logo"></a>
                     </div>
 
 
@@ -902,7 +902,7 @@
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/ghana.jpg')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/ghana.png')}}" alt="brand-logo"></a>
                     </div>
 
 

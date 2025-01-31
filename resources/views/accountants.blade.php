@@ -12,7 +12,7 @@
             <!-- IMAGE BLOCK -->
             <div class="col-md-6">
                 <div class="img-block left-column wow fadeInRight">
-                    <img class="img-fluid" src="images/accountant-dashboard.png" alt="accountant-platform-dashboard">
+                    <img class="img-fluid rounded-3" src="{{ asset('images/hero-15-img.png') }}" alt="accountant-platform-dashboard">
                 </div>
             </div>
 
@@ -80,14 +80,14 @@
                     <div class="fbox-2 fb-1 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
-                            <img class="img-fluid" src="images/project-management.png" alt="project-management">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="{{ asset('images/documents.jpg') }}" alt="project-management">
                         </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-22 w-700">Document Sharing</h6>
-                            <p>Assign teams, track progress, and manage multiple client projects efficiently</p>
+                            <h6 class="s-22 w-700">Document Management</h6>
+                            <p>Access and organize client documents securely with built-in version control and audit trails</p>
                         </div>
 
                     </div>
@@ -99,8 +99,8 @@
                     <div class="fbox-2 fb-2 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
-                            <img class="img-fluid" src="images/billing-payments.png" alt="billing-system">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="{{ asset('images/billing.png') }}" alt="billing-system">
                         </div>
 
                         <!-- Text -->
@@ -118,8 +118,8 @@
                     <div class="fbox-2 fb-3 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
-                            <img class="img-fluid" src="images/automated-accounting.png" alt="automated-tools">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w" src="{{ asset('images/accounting_tools.jpg') }}" alt="automated-tools">
                         </div>
 
                         <!-- Text -->
@@ -141,14 +141,14 @@
                     <div class="fbox-2 fb-1 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
                             <img class="img-fluid" src="images/project-management.png" alt="project-management">
                         </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-22 w-700">Document Sharing</h6>
-                            <p>Assign teams, track progress, and manage multiple client projects efficiently</p>
+                            <h6 class="s-22 w-700">Client Communication</h6>
+                            <p>Built-in messaging and video conferencing tools for seamless client interactions</p>
                         </div>
 
                     </div>
@@ -160,14 +160,14 @@
                     <div class="fbox-2 fb-2 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
                             <img class="img-fluid" src="images/billing-payments.png" alt="billing-system">
                         </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-22 w-700">Billing & Payments</h6>
-                            <p>Generate professional invoices and receive payments directly through the platform</p>
+                            <h6 class="s-22 w-700">Tax Preparation</h6>
+                            <p>Comprehensive tax preparation tools with automated calculations and compliance checks</p>
                         </div>
 
                     </div>
@@ -179,14 +179,14 @@
                     <div class="fbox-2 fb-3 wow fadeInUp">
 
                         <!-- Image -->
-                        <div class="fbox-img gr--whitesmoke h-175">
-                            <img class="img-fluid" src="images/automated-accounting.png" alt="automated-tools">
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="{{ images/reporting.jpg }}" alt="automated-tools">
                         </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-22 w-700">Automated Tools</h6>
-                            <p>Access secure, automated accounting tools and real-time financial data</p>
+                            <h6 class="s-22 w-700">Financial Reporting</h6>
+                            <p>Generate detailed financial reports and analytics for better client insights</p>
                         </div>
 
                     </div>

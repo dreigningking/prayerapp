@@ -24,33 +24,33 @@
 
 
                     <!-- Title -->
-                    <h2 class="s-46 w-700">Streamlined Financial Solutions</h2>
+                    <h2 class="s-46 w-700">Having Trouble Managing Your Finances?</h2>
 
                     <!-- Text -->
-                    <p>Experience seamless financial management with Gbeya's comprehensive platform. Our intuitive tools handle everything from basic bookkeeping to complex financial operations, making it easier for you to focus on growing your business while we take care of the numbers.
+                    <p>Are you struggling to keep track of your taxes or audit your finances? Don't worry anymore! Gbeya's comprehensive platform makes financial management effortless. Let us handle the complexities while you focus on what matters most.
                     </p>
 
                     <!-- Small Title -->
-                    <h5 class="s-24 w-700">For Everyone</h5>
+                    <h5 class="s-24 w-700">We're Here to Help</h5>
 
                     <!-- List -->
                     <ul class="simple-list">
 
                         <li class="list-item">
-                            <p> <strong>For Individuals:</strong>
-                                Personal finance management, tax filing assistance, and financial planning tools to help you take control of your finances.
+                            <p> <strong>Expense Tracking:</strong>
+                                Easily monitor and categorize all your expenses in one place, helping you understand where your money goes.
                             </p>
                         </li>
 
                         <li class="list-item">
-                            <p> <strong>For Accounting Firms:</strong>
-                                Comprehensive practice management, client collaboration tools, and automated workflows to streamline your accounting services.
+                            <p> <strong>Tax Management:</strong>
+                                Streamline tax preparation with automated calculations and document organization for stress-free filing.
                             </p>
                         </li>
 
                         <li class="list-item">
-                            <p class="mb-0"> <strong>For Government Bodies:</strong>
-                                Advanced financial reporting, compliance monitoring, and audit management capabilities to ensure regulatory requirements are met.
+                            <p class="mb-0"> <strong>Financial Planning:</strong>
+                                Set budgets, track goals, and make informed decisions with our comprehensive planning tools.
                             </p>
                         </li>
 
@@ -390,9 +390,10 @@
                         </li>
 
                         <li class="list-item">
-                            <p class="mb-0">Manage your appointments and meetings with ease and
-                                integrate with your google calendar.
-                            </p>
+                            <p>Manage your appointments and meetings with ease and integrate with your google calendar.</p>
+                        </li>
+                        <li class="list-item">
+                            <p class="mb-0">Have your meetings on our video conferencing platform or integrate with zoom, google meet, etc.</p>
                         </li>
 
                     </ul>
@@ -425,10 +426,10 @@
                     <div class="section-title mb-70">
 
                         <!-- Title -->
-                        <h2 class="s-50 w-700">Track the progress towards objectives with key results</h2>
+                        <h2 class="s-50 w-700">Connect with Professional Accountants Professionals</h2>
 
                         <!-- Text -->
-                        <p class="s-21">Ligula risus auctor tempus magna feugiat lacinia.</p>
+                        <p class="s-21">Hire qualified accountants and accounting firms, then monitor their work progress through our intuitive dashboard created specially for you.</p>
 
                     </div>
                 </div>
@@ -448,7 +449,7 @@
                         </a> -->
 
                         <!-- Preview Image -->
-                        <img class="img-fluid" src="images/dashboard-01.png" alt="video-preview">
+                        <img class="img-fluid" src="{{ asset('images/tablet-02.png') }}" alt="video-preview">
 
                     </div>
                 </div>
