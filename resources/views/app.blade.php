@@ -126,26 +126,25 @@
 
 
                                 <!-- DROPDOWN SUB MENU -->
-                                <li aria-haspopup="true"><a href="#" class="h-link">About <span class="wsarrow"></span></a>
+                                <li aria-haspopup="true"><a href="{{ url('/') }}" class="h-link">About <span class="wsarrow"></span></a>
                                     <ul class="sub-menu">
-                                        <li aria-haspopup="true"><a href="#lnk-1">Why Gbeya?</a></li>
-                                        <li aria-haspopup="true"><a href="#features-2">Best Solutions</a></li>
-                                        <li aria-haspopup="true"><a href="#lnk-2">Integrations</a></li>
-                                        <li aria-haspopup="true"><a href="#lnk-3">How It Works</a></li>
-                                        <li aria-haspopup="true"><a href="#reviews-2">Testimonials</a></li>
+                                        <li aria-haspopup="true"><a href="#why-gbeya">Why Gbeya?</a></li> <!--for everyone -->
+                                        <li aria-haspopup="true"><a href="#best-financial-tools">Best Financial Tools</a></li> <!-- Service 1   -->
+                                        <li aria-haspopup="true"><a href="#tax-compliance">Tax Compliance</a></li> <!-- Service 1   -->
+                                        <li aria-haspopup="true"><a href="#marketplace">Marketplace</a></li> <!-- Service 1   -->
+                                        <li aria-haspopup="true"><a href="#testimonials">Testimonials</a></li>
                                     </ul>
                                 </li>
 
 
                                 <!-- SIMPLE NAVIGATION LINK -->
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{url('clientele')}}" class="h-link">Clientele</a></li>
+                                
                                 <li class="nl-simple" aria-haspopup="true"><a href="{{url('accountants')}}" class="h-link">Accountants</a></li>
 
                                 <li class="nl-simple" aria-haspopup="true"><a href="{{url('tax-authorities')}}" class="h-link">Tax Authorities</a></li>
-
-
                                 <!-- SIMPLE NAVIGATION LINK -->
                                 <li class="nl-simple" aria-haspopup="true"><a href="{{url('pricing')}}" class="h-link">Pricing</a></li>
-
 
                                 <!-- SIMPLE NAVIGATION LINK -->
                                 <li class="nl-simple" aria-haspopup="true"><a href="#faqs-3" class="h-link">Blog</a></li>

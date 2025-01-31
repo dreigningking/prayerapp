@@ -8,7 +8,6 @@
         <div class="container">
             <div class="row d-flex align-items-center">
 
-
                 <!-- HERO TEXT -->
                 <div class="col-md-6">
                     <div class="hero-7-txt wow fadeInRight">
@@ -50,7 +49,7 @@
                 <!-- HERO IMAGE -->
                 <div class="col-md-6">
                     <div class="hero-7-img text-center wow fadeInLeft">
-                        <img class="img-fluid" src="{{asset('images/img-06.png')}}" alt="hero-image">
+                        <img class="img-fluid rounded-4" src="https://img.freepik.com/free-photo/industrial-designers-working-3d-model_23-2149370133.jpg" alt="hero-image">
                     </div>
                 </div>
 
@@ -60,40 +59,44 @@
     </div> <!-- End hero-overlay -->
 </section> <!-- END HERO-7 -->
 
-<!-- FEATURES-6
-			============================================= -->
-<section id="features-6" class="pb-100 features-section division">
+<section id="why-gbeya" class="pt-100 pb-100 features-section division">
     <div class="container">
 
 
-        <!-- FEATURES-6 WRAPPER -->
+        <!-- SECTION TITLE -->
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-9">
+                <div class="section-title mb-80">
+
+                    <!-- Title -->
+                    <h2 class="s-50 w-700">A Platform for Everyone</h2>
+
+                    <!-- Text -->
+                    <p class="s-21 color--grey">Whether you're an individual, organization, accounting professional, or tax authority - Gbeya is designed for you</p>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- FEATURES-2 WRAPPER -->
         <div class="fbox-wrapper text-center">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div class="row row-cols-1 row-cols-md-3">
 
 
                 <!-- FEATURE BOX #1 -->
                 <div class="col">
-                    <div class="fbox-6 fb-1 wow fadeInUp">
+                    <div class="fbox-2 fb-1 wow fadeInUp">
 
-                        <!-- Icon -->
-                        <div class="fbox-ico ico-55">
-                            <div class="shape-ico color--theme">
-
-                                <!-- Vector Icon -->
-                                <span class="flaticon-graphics"></span>
-
-                                <!-- Shape -->
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                </svg>
-
-                            </div>
-                        </div> <!-- End Icon -->
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="https://img.freepik.com/free-photo/portrait-female-employee-working-as-executive-manager-using-computer-plan-charts-presentation-with-financial-statistics-office-worker-creating-career-review-growth-handheld-shot_482257-46648.jpg" alt="feature-image">
+                        </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-20 w-700">Financial Dashboard</h6>
-                            <p>Real-time financial dashboard with customizable charts and reports.</p>
+                            <h6 class="s-22 w-700">Individuals & Companies</h6>
+                            <p>Manage your finances, track expenses, and handle accounting tasks with our user-friendly platform designed for businesses of all sizes</p>
                         </div>
 
                     </div>
@@ -102,27 +105,17 @@
 
                 <!-- FEATURE BOX #2 -->
                 <div class="col">
-                    <div class="fbox-6 fb-2 wow fadeInUp">
+                    <div class="fbox-2 fb-2 wow fadeInUp">
 
-                        <!-- Icon -->
-                        <div class="fbox-ico ico-55">
-                            <div class="shape-ico color--theme">
-
-                                <!-- Vector Icon -->
-                                <span class="flaticon-idea"></span>
-
-                                <!-- Shape -->
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                </svg>
-
-                            </div>
-                        </div> <!-- End Icon -->
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="https://img.freepik.com/free-photo/general-director-examining-statistics-big-data-computer-control-room_482257-90941.jpg" alt="feature-image">
+                        </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-20 w-700">Expense Tracking</h6>
-                            <p>Automatically categorize expenses and scan receipts with OCR technology</p>
+                            <h6 class="s-22 w-700">Accounting Professionals</h6>
+                            <p>Streamline your accounting tasks with our platform, designed to help you manage clients, invoices, and financial reports efficiently</p>
                         </div>
 
                     </div>
@@ -131,68 +124,30 @@
 
                 <!-- FEATURE BOX #3 -->
                 <div class="col">
-                    <div class="fbox-6 fb-3 wow fadeInUp">
+                    <div class="fbox-2 fb-3 wow fadeInUp">
 
-                        <!-- Icon -->
-                        <div class="fbox-ico ico-55">
-                            <div class="shape-ico color--theme">
-
-                                <!-- Vector Icon -->
-                                <span class="flaticon-graphic"></span>
-
-                                <!-- Shape -->
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                </svg>
-
-                            </div>
-                        </div> <!-- End Icon -->
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175 pt-0">
+                            <img class="img-fluid w-100" src="https://img.freepik.com/free-photo/displeased-young-entrepreneur-with-dark-skin-holds-documentation-notepad-demonstrates-stop-gesture-refuses-develop-business-ideas-alone_273609-23618.jpg" alt="feature-image">
+                        </div>
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-20 w-700">Digital Cards</h6>
-                            <p>Generate virtual cards with spending limits and instant freeze capabilities.</p>
+                            <h6 class="s-22 w-700">Tax Authorities</h6>
+                            <p>Streamline tax administration and compliance monitoring with our platform designed to help tax bodies efficiently manage taxpayer data and reporting</p>
                         </div>
 
                     </div>
                 </div> <!-- END FEATURE BOX #3 -->
 
 
-                <!-- FEATURE BOX #4 -->
-                <div class="col">
-                    <div class="fbox-6 fb-4 wow fadeInUp">
-
-                        <!-- Icon -->
-                        <div class="fbox-ico ico-55">
-                            <div class="shape-ico color--theme">
-
-                                <!-- Vector Icon -->
-                                <span class="flaticon-search-engine-1"></span>
-
-                                <!-- Shape -->
-                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                </svg>
-
-                            </div>
-                        </div> <!-- End Icon -->
-
-                        <!-- Text -->
-                        <div class="fbox-txt">
-                            <h6 class="s-20 w-700">Tax Preparation</h6>
-                            <p>Automated tax document compilation and direct filing with authorities</p>
-                        </div>
-
-                    </div>
-                </div> <!-- END FEATURE BOX #4 -->
-
-
             </div> <!-- End row -->
-        </div> <!-- END FEATURES-6 WRAPPER -->
+        </div> <!-- END FEATURES-2 WRAPPER -->
 
 
     </div> <!-- End container -->
-</section> <!-- END FEATURES-6 -->
+</section> <!-- END FEATURES-2 -->
+
 
 
 
@@ -201,77 +156,7 @@
 <hr class="divider">
 
 
-
-
-<!-- TEXT CONTENT
-			============================================= -->
-<section id="lnk-1" class="pt-100 ct-02 content-section division">
-    <div class="container">
-
-
-        <!-- SECTION CONTENT (ROW) -->
-        <div class="row d-flex align-items-center">
-
-
-            <!-- IMAGE BLOCK -->
-            <div class="col-md-6">
-                <div class="img-block left-column wow fadeInRight">
-                    <img class="img-fluid" src="{{asset('images/img-07.png')}}" alt="content-image">
-                </div>
-            </div>
-
-
-            <!-- TEXT BLOCK -->
-            <div class="col-md-6">
-                <div class="txt-block right-column wow fadeInLeft">
-
-
-
-                    <!-- Title -->
-                    <h2 class="s-46 w-700">Streamlined Financial Solutions</h2>
-
-                    <!-- Text -->
-                    <p>Experience seamless financial management with Gbeya's comprehensive platform. Our intuitive tools handle everything from basic bookkeeping to complex financial operations, making it easier for you to focus on growing your business while we take care of the numbers.
-                    </p>
-
-                    <!-- Small Title -->
-                    <h5 class="s-24 w-700">For Everyone</h5>
-
-                    <!-- List -->
-                    <ul class="simple-list">
-
-                        <li class="list-item">
-                            <p> <strong>For Individuals:</strong>
-                                Personal finance management, tax filing assistance, and financial planning tools to help you take control of your finances.
-                            </p>
-                        </li>
-
-                        <li class="list-item">
-                            <p> <strong>For Accounting Firms:</strong>
-                                Comprehensive practice management, client collaboration tools, and automated workflows to streamline your accounting services.
-                            </p>
-                        </li>
-
-                        <li class="list-item">
-                            <p class="mb-0"> <strong>For Government Bodies:</strong>
-                                Advanced financial reporting, compliance monitoring, and audit management capabilities to ensure regulatory requirements are met.
-                            </p>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div> <!-- END TEXT BLOCK -->
-
-
-        </div> <!-- END SECTION CONTENT (ROW) -->
-
-
-    </div> <!-- End container -->
-</section> <!-- END TEXT CONTENT -->
-
-
-<section id="features-11" class="pt-100 features-section division">
+<section id="best-financial-tools" class="pt-100 features-section division">
     <div class="container">
 
 
@@ -495,6 +380,63 @@
     </div> <!-- End container -->
 </section> <!-- END FEATURES-11 -->
 
+
+
+<!-- BOX CONTENT
+			============================================= -->
+<section id="tax-compliance" class="pt-100 ws-wrapper content-section">
+    <div class="container">
+        <div class="bc-1-wrapper bg--02 bg--fixed r-16">
+            <div class="section-overlay">
+                <div class="row d-flex align-items-center">
+
+
+                    <!-- IMAGE BLOCK -->
+                    <div class="col-md-6">
+                        <div class="img-block left-column wow fadeInRight">
+                            <img class="img-fluid" src="{{asset('images/img-09.png')}}" alt="content-image">
+                        </div>
+                    </div>
+
+
+                    <!-- TEXT BLOCK -->
+                    <div class="col-md-6">
+                        <div class="txt-block right-column wow fadeInLeft">
+
+                            <!-- Section ID -->
+                            <span class="section-id">Global Tax Compliance</span>
+
+                            <!-- Title -->
+                            <h2 class="s-46 w-700">Comprehensive Tax Management</h2>
+
+                            <!-- Text -->
+                            <p>Stay compliant with tax regulations worldwide. Our platform simplifies tax filing and
+                                payments across multiple jurisdictions, with automated reminders and updates for all
+                                your tax obligations, wherever your business operates.
+                            </p>
+
+                            <!-- Small Title -->
+                            <h5 class="s-24 w-700 h5-title">Key Tax Features:</h5>
+
+                            <!-- Text -->
+                            <p class="mb-0">• Multi-country tax compliance monitoring<br>
+                                • Automated tax filing reminders<br>
+                                • Direct tax payment processing<br>
+                                • Real-time tax liability tracking<br>
+                                • Tax regulation updates and alerts
+                            </p>
+
+                        </div>
+                    </div> <!-- END TEXT BLOCK -->
+
+
+                </div> <!-- End row -->
+            </div> <!-- End section overlay -->
+        </div> <!-- End content wrapper -->
+    </div> <!-- End container -->
+</section> <!-- END BOX CONTENT -->
+
+
 <!-- TEXT CONTENT
 			============================================= -->
 <section id="features-2" class="pt-100 ct-04 content-section division">
@@ -526,7 +468,7 @@
                     <!-- Section ID -->
                     <span class="section-id mb-3">Simple Process</span>
                     <!-- Title -->
-                    <h2 class="s-30 w-700 mb-50">How to Engage Accountants</h2>
+                    <h2 class="s-30 w-700 mb-50">Engaging Accountants</h2>
 
                     <!-- CONTENT BOX #1 -->
                     <div class="cbox-2 process-step">
@@ -603,60 +545,6 @@
 </section> <!-- END TEXT CONTENT -->
 
 
-
-<!-- BOX CONTENT
-			============================================= -->
-<section class="pt-100 ws-wrapper content-section">
-    <div class="container">
-        <div class="bc-1-wrapper bg--02 bg--fixed r-16">
-            <div class="section-overlay">
-                <div class="row d-flex align-items-center">
-
-
-                    <!-- IMAGE BLOCK -->
-                    <div class="col-md-6">
-                        <div class="img-block left-column wow fadeInRight">
-                            <img class="img-fluid" src="{{asset('images/img-09.png')}}" alt="content-image">
-                        </div>
-                    </div>
-
-
-                    <!-- TEXT BLOCK -->
-                    <div class="col-md-6">
-                        <div class="txt-block right-column wow fadeInLeft">
-
-                            <!-- Section ID -->
-                            <span class="section-id">Global Tax Compliance</span>
-
-                            <!-- Title -->
-                            <h2 class="s-46 w-700">Comprehensive Tax Management</h2>
-
-                            <!-- Text -->
-                            <p>Stay compliant with tax regulations worldwide. Our platform simplifies tax filing and
-                                payments across multiple jurisdictions, with automated reminders and updates for all
-                                your tax obligations, wherever your business operates.
-                            </p>
-
-                            <!-- Small Title -->
-                            <h5 class="s-24 w-700 h5-title">Key Tax Features:</h5>
-
-                            <!-- Text -->
-                            <p class="mb-0">• Multi-country tax compliance monitoring<br>
-                                • Automated tax filing reminders<br>
-                                • Direct tax payment processing<br>
-                                • Real-time tax liability tracking<br>
-                                • Tax regulation updates and alerts
-                            </p>
-
-                        </div>
-                    </div> <!-- END TEXT BLOCK -->
-
-
-                </div> <!-- End row -->
-            </div> <!-- End section overlay -->
-        </div> <!-- End content wrapper -->
-    </div> <!-- End container -->
-</section> <!-- END BOX CONTENT -->
 
 
 
@@ -747,240 +635,15 @@
 <hr class="divider">
 
 
-
-
-<!-- FEATURES-13
-			============================================= -->
-<section id="features-13" class="shape--bg shape--white-500 pt-100 features-section division">
-    <div class="container">
-        <div class="row d-flex align-items-center">
-
-
-            <!-- FEATURES-13 WRAPPER -->
-            <div class="col-md-7 order-last order-md-2">
-                <div class="fbox-13-wrapper wow fadeInRight">
-                    <div class="row">
-
-
-                        <div class="col-md-6">
-
-                            <!-- FEATURE BOX #1 -->
-                            <div id="fb-12-1" class="fbox-12 bg--white-100 block-shadow r-12 mb-30">
-
-                                <!-- Icon -->
-                                <div class="fbox-ico ico-50">
-                                    <div class="shape-ico color--theme">
-
-                                        <!-- Vector Icon -->
-                                        <span class="flaticon-layers-1"></span>
-
-                                        <!-- Shape -->
-                                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                        </svg>
-
-                                    </div>
-                                </div> <!-- End Icon -->
-
-                                <!-- Text -->
-                                <div class="fbox-txt">
-                                    <h5 class="s-19 w-700">Cards</h5>
-                                    <p>Generate virtual cards instantly, fund them securely, and manage all your expenses with complete control and visibility</p>
-                                </div>
-
-                            </div>
-
-                            <!-- FEATURE BOX #2 -->
-                            <div id="fb-12-2" class="fbox-12 bg--white-100 block-shadow r-12">
-
-                                <!-- Icon -->
-                                <div class="fbox-ico ico-50">
-                                    <div class="shape-ico color--theme">
-
-                                        <!-- Vector Icon -->
-                                        <span class="flaticon-tutorial"></span>
-
-                                        <!-- Shape -->
-                                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                        </svg>
-
-                                    </div>
-                                </div> <!-- End Icon -->
-
-                                <!-- Text -->
-                                <div class="fbox-txt">
-                                    <h5 class="s-19 w-700">Exchange</h5>
-                                    <p>Exchange your local currency to any other currency in the world with ease and convenience</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-6">
-
-                            <!-- FEATURE BOX #3 -->
-                            <div id="fb-12-3" class="fbox-12 bg--white-100 block-shadow r-12 mb-30">
-
-                                <!-- Icon -->
-                                <div class="fbox-ico ico-50">
-                                    <div class="shape-ico color--theme">
-
-                                        <!-- Vector Icon -->
-                                        <span class="flaticon-pay-per-click"></span>
-
-                                        <!-- Shape -->
-                                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                        </svg>
-
-                                    </div>
-                                </div> <!-- End Icon -->
-
-                                <!-- Text -->
-                                <div class="fbox-txt">
-                                    <h5 class="s-19 w-700">Income & Expenses</h5>
-                                    <p>Track income and expenses easily with detailed cash flow insights for better financial decisions.</p>
-                                </div>
-
-                            </div>
-
-                            <!-- FEATURE BOX #4 -->
-                            <div id="fb-12-4" class="fbox-12 bg--white-100 block-shadow r-12">
-
-                                <!-- Icon -->
-                                <div class="fbox-ico ico-50">
-                                    <div class="shape-ico color--theme">
-
-                                        <!-- Vector Icon -->
-                                        <span class="flaticon-taxes"></span>
-
-                                        <!-- Shape -->
-                                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
-                                        </svg>
-
-                                    </div>
-                                </div> <!-- End Icon -->
-
-                                <!-- Text -->
-                                <div class="fbox-txt">
-                                    <h5 class="s-19 w-700">Savings</h5>
-                                    <p>Set savings goals, create budgets, and track your progress towards financial targets.</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div> <!-- End row -->
-            </div> <!-- END FEATURES-13 WRAPPER -->
-
-
-            <!-- TEXT BLOCK -->
-            <div class="col-md-5 order-first order-md-2">
-                <div class="txt-block left-column wow fadeInLeft">
-
-                    <!-- Section ID -->
-                    <span class="section-id">Security & Access</span>
-
-                    <!-- Title -->
-                    <h2 class="s-46 w-700">Secure Access Management</h2>
-
-                    <!-- Text -->
-                    <p>Take control of your financial data with robust security features and granular access controls. Define who can view and modify your financial information with role-based permissions.
-                    </p>
-
-                    <!-- List -->
-                    <ul class="simple-list">
-
-                        <li class="list-item">
-                            <p>Set custom access levels for team members, accountants, and auditors to ensure data security while enabling seamless collaboration
-                            </p>
-                        </li>
-
-                        <li class="list-item">
-                            <p class="mb-0">Track all system activities with detailed audit logs and receive notifications for critical changes to maintain complete oversight
-                            </p>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div> <!-- END TEXT BLOCK -->
-
-
-        </div> <!-- End row -->
-    </div> <!-- End container -->
-</section> <!-- END FEATURES-13 -->
-
-
-
-
 <!-- TEXT CONTENT
 			============================================= -->
-<section class="pt-100 ct-01 content-section division">
-    <div class="container">
-
-
-        <!-- SECTION CONTENT (ROW) -->
-        <div class="row d-flex align-items-center">
-
-
-            <!-- TEXT BLOCK -->
-            <div class="col-md-6 order-last order-md-2">
-                <div class="txt-block left-column wow fadeInRight">
-
-                    <!-- Section ID -->
-                    <span class="section-id">Easy Integration</span>
-
-                    <!-- Title -->
-                    <h2 class="s-46 w-700">Appointments & Meetings</h2>
-
-                    <!-- List -->
-                    <ul class="simple-list">
-
-                        <li class="list-item">
-                            <p>Schedule appointments and meetings with accountants and auditors.
-                            </p>
-                        </li>
-
-                        <li class="list-item">
-                            <p class="mb-0">Manage your appointments and meetings with ease and
-                                integrate with your google calendar.
-                            </p>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div> <!-- END TEXT BLOCK -->
-
-
-            <!-- IMAGE BLOCK -->
-            <div class="col-md-6 order-first order-md-2">
-                <div class="img-block right-column wow fadeInLeft">
-                    <img class="img-fluid" src="{{asset('images/img-02.png')}}" alt="content-image">
-                </div>
-            </div>
-
-
-        </div> <!-- END SECTION CONTENT (ROW) -->
-
-
-    </div> <!-- End container -->
-</section> <!-- END TEXT CONTENT -->
 
 
 
 
 <!-- TESTIMONIALS-2
 			============================================= -->
-<section id="reviews-2" class="pt-100 reviews-section">
+<section id="testimonials" class="pt-100 reviews-section">
     <div class="container">
 
 
@@ -1177,7 +840,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-9">
                 <div class="brands-title mb-50">
-                    <h5 class="s-20 w-700">Trusted and used by over 3,400 companies</h5>
+                    <h5 class="s-20 w-700">Trusted and used by over 10 tax bodies</h5>
                 </div>
             </div>
         </div>
@@ -1191,55 +854,55 @@
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-1.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/uk.png')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-2.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/usa.png')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-3.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/germany.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-4.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/france.png')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-5.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/canada.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-6.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/australia.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-7.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/nigeria.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-8.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/southafrica.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 
                     <!-- BRAND LOGO IMAGE -->
                     <div class="brand-logo">
-                        <a href="#"><img class="img-fluid" src="{{asset('images/brand-9.png')}}" alt="brand-logo"></a>
+                        <a href="#"><img class="img-fluid" src="{{asset('images/logos/ghana.jpg')}}" alt="brand-logo"></a>
                     </div>
 
 

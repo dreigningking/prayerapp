@@ -72,6 +72,67 @@
 
         <!-- FEATURES-2 WRAPPER -->
         <div class="fbox-wrapper text-center">
+            <div class="row row-cols-1 row-cols-md-3 mb-80">
+
+
+                <!-- FEATURE BOX #1 -->
+                <div class="col">
+                    <div class="fbox-2 fb-1 wow fadeInUp">
+
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175">
+                            <img class="img-fluid" src="images/project-management.png" alt="project-management">
+                        </div>
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-22 w-700">Document Sharing</h6>
+                            <p>Assign teams, track progress, and manage multiple client projects efficiently</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #1 -->
+
+
+                <!-- FEATURE BOX #2 -->
+                <div class="col">
+                    <div class="fbox-2 fb-2 wow fadeInUp">
+
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175">
+                            <img class="img-fluid" src="images/billing-payments.png" alt="billing-system">
+                        </div>
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-22 w-700">Billing & Payments</h6>
+                            <p>Generate professional invoices and receive payments directly through the platform</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #2 -->
+
+
+                <!-- FEATURE BOX #3 -->
+                <div class="col">
+                    <div class="fbox-2 fb-3 wow fadeInUp">
+
+                        <!-- Image -->
+                        <div class="fbox-img gr--whitesmoke h-175">
+                            <img class="img-fluid" src="images/automated-accounting.png" alt="automated-tools">
+                        </div>
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-22 w-700">Automated Tools</h6>
+                            <p>Access secure, automated accounting tools and real-time financial data</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #3 -->
+
+
+            </div> <!-- End row -->
             <div class="row row-cols-1 row-cols-md-3">
 
 
@@ -86,7 +147,7 @@
 
                         <!-- Text -->
                         <div class="fbox-txt">
-                            <h6 class="s-22 w-700">Project Management</h6>
+                            <h6 class="s-22 w-700">Document Sharing</h6>
                             <p>Assign teams, track progress, and manage multiple client projects efficiently</p>
                         </div>
 
