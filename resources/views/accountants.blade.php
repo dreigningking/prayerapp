@@ -119,7 +119,7 @@
 
                         <!-- Image -->
                         <div class="fbox-img gr--whitesmoke h-175 pt-0">
-                            <img class="img-fluid w" src="{{ asset('images/accounting_tools.jpg') }}" alt="automated-tools">
+                            <img class="img-fluid w-100" src="{{ asset('images/accounting_tools.jpg') }}" alt="automated-tools">
                         </div>
 
                         <!-- Text -->
@@ -142,7 +142,7 @@
 
                         <!-- Image -->
                         <div class="fbox-img gr--whitesmoke h-175 pt-0">
-                            <img class="img-fluid" src="images/project-management.png" alt="project-management">
+                            <img class="img-fluid w-100" src="{{ asset('images/communication.jpg') }}" alt="project-management">
                         </div>
 
                         <!-- Text -->
@@ -161,7 +161,7 @@
 
                         <!-- Image -->
                         <div class="fbox-img gr--whitesmoke h-175 pt-0">
-                            <img class="img-fluid" src="images/billing-payments.png" alt="billing-system">
+                            <img class="img-fluid w-100" src="{{ asset('images/taxform.jpg') }}" alt="billing-system">
                         </div>
 
                         <!-- Text -->
@@ -180,7 +180,7 @@
 
                         <!-- Image -->
                         <div class="fbox-img gr--whitesmoke h-175 pt-0">
-                            <img class="img-fluid w-100" src="{{ images/reporting.jpg }}" alt="automated-tools">
+                            <img class="img-fluid w-100" src="{{ asset('images/reporting.jpg') }}" alt="automated-tools">
                         </div>
 
                         <!-- Text -->
