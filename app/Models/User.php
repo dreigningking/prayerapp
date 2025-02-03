@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getNameAttribute()
+    {
+        return ucwords($this->firstname).' '.ucwords($this->surname);
+    }
+
+    public function getImageAttribute(){
+        return $this->photo ? config('app.url')."/storage/$this->photo": null;   
+    }
 }

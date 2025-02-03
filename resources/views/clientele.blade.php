@@ -426,7 +426,7 @@
                     <div class="section-title mb-70">
 
                         <!-- Title -->
-                        <h2 class="s-50 w-700">Connect with Professional Accountants Professionals</h2>
+                        <h2 class="s-50 w-700">Connect with <br> Professional Accountants</h2>
 
                         <!-- Text -->
                         <p class="s-21">Hire qualified accountants and accounting firms, then monitor their work progress through our intuitive dashboard created specially for you.</p>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,8 +24,13 @@ Route::get('pricing', function () {
 });
 
 Route::get('blog', function () {
-    return view('blog');
-});
+    $posts = Post::paginate(10);
+    return view('blog', compact('posts'));
+})->name('blog');
+
+Route::get('blog/{post}', function (Post $post) {
+    return view('blog-single', compact('post'));
+})->name('blog.single');
 
 Route::get('support-forum', function () {
     return view('support-forum');

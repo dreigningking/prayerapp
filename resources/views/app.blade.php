@@ -147,7 +147,7 @@
                                 <li class="nl-simple" aria-haspopup="true"><a href="{{url('pricing')}}" class="h-link">Pricing</a></li>
 
                                 <!-- SIMPLE NAVIGATION LINK -->
-                                <li class="nl-simple" aria-haspopup="true"><a href="#faqs-3" class="h-link">Blog</a></li>
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{route('blog')}}" class="h-link">Blog</a></li>
 
 
                                 <!-- SIGN IN LINK -->
