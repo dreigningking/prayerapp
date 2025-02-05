@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout.app')
 @section('content')
 <!-- TEXT CONTENT ============================================= -->
 <section id="lnk-1" class="pt-100 ct-02 content-section division">

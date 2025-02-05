@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout.app')
 
 @section('content')
 <section id="hero-7" class="pt-100 pb-100 ct-01 content-section division">

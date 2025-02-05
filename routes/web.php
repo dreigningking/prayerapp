@@ -7,13 +7,9 @@ Route::view('/','welcome');
 
 Route::view('clientele','clientele');
 
-Route::get('accountants', function () {
-    return view('accountants');
-});
+Route::view('accountant','accountants')->name('accountants');
 
-Route::get('tax-authorities', function () {
-    return view('taxauthority');
-});
+Route::view('tax-authorities','taxauthority');
 
 Route::get('pricing', function () {
     return view('pricing');
