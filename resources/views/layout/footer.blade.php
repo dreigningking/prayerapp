@@ -39,7 +39,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Features</a></li>
                                 <li><a href="#">Pricing</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{ url('contact-us') }}">Contact</a></li>
                             </ul>
                         </div>
 
