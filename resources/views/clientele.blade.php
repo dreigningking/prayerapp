@@ -3,8 +3,6 @@
 <!-- TEXT CONTENT ============================================= -->
 <section id="lnk-1" class="pt-100 ct-02 content-section division">
     <div class="container">
-
-
         <!-- SECTION CONTENT (ROW) -->
         <div class="row d-flex align-items-center">
 

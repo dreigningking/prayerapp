@@ -13,34 +13,13 @@
                     <div class="hero-7-txt wow fadeInRight">
 
                         <!-- Title -->
-                        <h2 class="s-54 w-700">Digital financial platform that drives results</h2>
+                        <h2 class="s-54 w-700">Simplify Tax & Accounting with Trusted Experts</h2>
 
                         <!-- Text -->
-                        <p class="p-lg">Simplify your financial management with our comprehensive
-                            platform. Track expenses, manage budgets, and prepare taxes
-                            effortlessly.
-                        </p>
-
+                        <p class="p-lg">Connecting individuals, businesses, accountants and government entities to streamline tax filing and financial management.</p>
+                        <a href="#" class="btn r-06 btn--theme hover--theme">Get Started</a>
+                        <a href="#" class="btn r-06 btn--purple-200 hover--purple-200 ms-2">Watch Demo</a>
                         <!-- HERO QUICK FORM -->
-                        <form name="quickform" class="quick-form form-shadow form-half mt-35">
-
-                            <!-- Form Inputs -->
-                            <div class="input-group">
-                                <input type="email" name="email" class="form-control email r-06" placeholder="Your email address" autocomplete="off" required>
-                                <span class="input-group-btn form-btn">
-                                    <button type="submit" class="btn r-06 btn--theme hover--theme submit">Get Started</button>
-                                </span>
-                            </div>
-
-                            <!-- Form Message -->
-                            <div class="quick-form-msg"><span class="loading"></span></div>
-
-                        </form> <!-- END HERO QUICK FORM -->
-
-                        <!-- Text -->
-                        <p class="p-sm btn-txt ico-15">
-                            <span class="flaticon-check"></span> No credit card needed, free 14-day trial
-                        </p>
 
                     </div>
                 </div> <!-- END HERO TEXT -->
@@ -49,7 +28,7 @@
                 <!-- HERO IMAGE -->
                 <div class="col-md-6">
                     <div class="hero-7-img text-center wow fadeInLeft">
-                        <img class="img-fluid rounded-4" src="https://img.freepik.com/free-photo/industrial-designers-working-3d-model_23-2149370133.jpg" alt="hero-image">
+                        <img class="img-fluid rounded-4" src="{{ asset('images/hero_image.jpeg') }}" alt="hero-image">
                     </div>
                 </div>
 
@@ -58,6 +37,245 @@
         </div> <!-- End container -->
     </div> <!-- End hero-overlay -->
 </section> <!-- END HERO-7 -->
+
+<section id="features-6" class="pt-100 features-section division">
+    <div class="container">
+        <!-- FEATURES-6 WRAPPER -->
+        <div class="fbox-wrapper text-center">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+
+
+                <!-- FEATURE BOX #1 -->
+                <div class="col">
+                    <div class="fbox-6 fb-1 wow fadeInUp">
+
+                        <!-- Icon -->
+                        <div class="fbox-ico ico-55">
+                            <div class="shape-ico color--theme">
+
+                                <!-- Vector Icon -->
+                                <span class="flaticon-graphics"></span>
+
+                                <!-- Shape -->
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
+                                </svg>
+
+                            </div>
+                        </div> <!-- End Icon -->
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-20 w-700">Financial Dashboard</h6>
+                            <p>Real-time financial dashboard with customizable charts and reports.</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #1 -->
+
+
+                <!-- FEATURE BOX #2 -->
+                <div class="col">
+                    <div class="fbox-6 fb-2 wow fadeInUp">
+
+                        <!-- Icon -->
+                        <div class="fbox-ico ico-55">
+                            <div class="shape-ico color--theme">
+
+                                <!-- Vector Icon -->
+                                <span class="flaticon-idea"></span>
+
+                                <!-- Shape -->
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
+                                </svg>
+
+                            </div>
+                        </div> <!-- End Icon -->
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-20 w-700">Expense Tracking</h6>
+                            <p>Automatically categorize expenses and scan receipts with OCR technology</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #2 -->
+
+
+                <!-- FEATURE BOX #3 -->
+                <div class="col">
+                    <div class="fbox-6 fb-3 wow fadeInUp">
+
+                        <!-- Icon -->
+                        <div class="fbox-ico ico-55">
+                            <div class="shape-ico color--theme">
+
+                                <!-- Vector Icon -->
+                                <span class="flaticon-graphic"></span>
+
+                                <!-- Shape -->
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
+                                </svg>
+
+                            </div>
+                        </div> <!-- End Icon -->
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-20 w-700">Digital Cards</h6>
+                            <p>Generate virtual cards with spending limits and instant freeze capabilities.</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #3 -->
+
+
+                <!-- FEATURE BOX #4 -->
+                <div class="col">
+                    <div class="fbox-6 fb-4 wow fadeInUp">
+
+                        <!-- Icon -->
+                        <div class="fbox-ico ico-55">
+                            <div class="shape-ico color--theme">
+
+                                <!-- Vector Icon -->
+                                <span class="flaticon-search-engine-1"></span>
+
+                                <!-- Shape -->
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z" transform="translate(100 100)" />
+                                </svg>
+
+                            </div>
+                        </div> <!-- End Icon -->
+
+                        <!-- Text -->
+                        <div class="fbox-txt">
+                            <h6 class="s-20 w-700">Tax Preparation</h6>
+                            <p>Automated tax document compilation and direct filing with authorities</p>
+                        </div>
+
+                    </div>
+                </div> <!-- END FEATURE BOX #4 -->
+
+
+            </div> <!-- End row -->
+        </div> <!-- END FEATURES-6 WRAPPER -->
+
+
+    </div> <!-- End container -->
+</section> <!-- END FEATURES-6 -->
+
+<section id="lnk-1" class="pt-100 ct-02 content-section division">
+    <div class="container">
+        <!-- SECTION CONTENT (ROW) -->
+        <div class="row d-flex align-items-center">
+
+
+            <!-- IMAGE BLOCK -->
+            <div class="col-md-6">
+                <div class="img-block left-column wow fadeInRight">
+                    <img class="img-fluid" src="{{asset('images/img-07.png')}}" alt="content-image">
+                </div>
+            </div>
+
+
+            <!-- TEXT BLOCK -->
+            <div class="col-md-6">
+                <div class="txt-block right-column wow fadeInLeft">
+
+
+
+                    <!-- Title -->
+                    <h2 class="s-24 w-700">Empowering individuals and businesses with expert tax and accounting solutions</h2>
+
+                    <!-- Text -->
+                    <p>Are you struggling to keep track of your taxes or audit your finances? Don't worry anymore! Gbeya's comprehensive platform makes financial management effortless. Let us handle the complexities while you focus on what matters most.
+                    </p>
+
+                    <!-- Small Title -->
+                    <h5 class="s-24 w-700">We're Here to Help</h5>
+
+                    <!-- List -->
+                    <ul class="simple-list">
+
+                        <li class="list-item">
+                            <p> <strong>Expense Tracking:</strong>
+                                Easily monitor and categorize all your expenses in one place, helping you understand where your money goes.
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p> <strong>Tax Management:</strong>
+                                Streamline tax preparation with automated calculations and document organization for stress-free filing.
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p class="mb-0"> <strong>Financial Planning:</strong>
+                                Set budgets, track goals, and make informed decisions with our comprehensive planning tools.
+                            </p>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div> <!-- END TEXT BLOCK -->
+
+
+        </div> <!-- END SECTION CONTENT (ROW) -->
+
+
+    </div> <!-- End container -->
+</section>
+
+<section id="hero-7" class="ct-02 content-section division">
+    <div class="container">
+
+        <div class="row d-flex align-items-center">
+
+            <!-- TEXT BLOCK -->
+            <div class="col-md-6">
+                <div class="txt-block right-column wow fadeInLeft">
+
+
+                    <!-- Section ID -->
+                    <span class="section-id">Professional Accounting Platform</span>
+
+                    <!-- Title -->
+                    <h2 class="s-46 w-700">Streamline Your Accounting Practice</h2>
+
+                    <!-- Text -->
+                    <p>Transform your accounting practice with our comprehensive platform designed for modern accountants and auditors. Import existing clients, manage projects, and access powerful accounting tools all in one place.</p>
+
+                    <!-- List -->
+                    <ul class="simple-list">
+                        <li class="list-item">
+                            <p>Seamlessly import your client base via CSV and manage all client relationships through a centralized dashboard</p>
+                        </li>
+                        <li class="list-item">
+                            <p>Access a marketplace of accounting projects and expand your client base through our bidding system</p>
+                        </li>
+                    </ul>
+
+                </div>
+            </div> <!-- END TEXT BLOCK -->
+            <!-- IMAGE BLOCK -->
+            <div class="col-md-6">
+                <div class="img-block left-column wow fadeInRight">
+                    <img class="img-fluid rounded-3" src="{{ asset('images/hero-15-img.png') }}" alt="accountant-platform-dashboard">
+                </div>
+            </div>
+
+
+            
+
+
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+</section> <!-- END TEXT CONTENT -->
 
 <section id="why-gbeya" class="pt-100 pb-100 features-section division">
     <div class="container">

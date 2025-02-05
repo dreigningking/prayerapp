@@ -3,13 +3,9 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/','welcome');
 
-Route::get('clientele', function () {
-    return view('clientele');
-});
+Route::view('clientele','clientele');
 
 Route::get('accountants', function () {
     return view('accountants');
