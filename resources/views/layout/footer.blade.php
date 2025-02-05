@@ -1,160 +1,74 @@
+
 <!-- FOOTER-3
 			============================================= -->
-            <footer id="footer-3" class="pt-100 footer">
-            <div class="container">
-
-
-                <!-- FOOTER CONTENT -->
-                <div class="row">
-
-
-                    <!-- FOOTER LOGO -->
-                    <div class="col-xl-3">
-                        <div class="footer-info">
-                            <img class="footer-logo" src="{{asset('images/gbeya-logo.png')}}" alt="footer-logo">
+            <footer class="footer-container">
+                <div class="footer-main">
+                    <!-- Newsletter Section -->
+                    <div class="newsletter-section" style="background-image: url('{{ asset('images/pattern.svg') }}')">
+                        <img src="{{ asset('images/shape.svg') }}" alt="shape" class="shape-left">
+                        <img src="{{ asset('images/shape2.svg') }}" alt="shape" class="shape-right">
+                        
+                        <h4 class="newsletter-title">Subscribe to our newsletter</h4>
+                        <div class="newsletter-form">
+                            <input type="text" placeholder="Name" class="newsletter-input">
+                            <input type="text" placeholder="Email Address" class="newsletter-input">
+                            <button class="subscribe-btn">Subscribe</button>
                         </div>
                     </div>
 
-
-                    <!-- FOOTER LINKS -->
-                    <div class="col-sm-4 col-md-3 col-xl-2">
-                        <div class="footer-links fl-1">
-
-                            <!-- Title -->
-                            <h6 class="s-17 w-700">Company</h6>
-
-                            <!-- Links -->
-                            <ul class="foo-links clearfix">
-                                <li>
-                                    <p><a href="{{url('/')}}">About Us</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="{{url('/')}}#tools">Tools</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="{{url('/')}}#tax-compliance">Tax Compliance</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="{{url('contact')}}">Contact Us</a></p>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div> <!-- END FOOTER LINKS -->
-
-
-                    <!-- FOOTER LINKS -->
-                    <div class="col-sm-4 col-md-3 col-xl-2">
-                        <div class="footer-links fl-2">
-
-                            <!-- Title -->
-                            <h6 class="s-17 w-700">Product</h6>
-
-                            <!-- Links -->
-                            <ul class="foo-links clearfix">
-                                <li>
-                                    <p><a href="{{url('clientele')}}">Clientele</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="{{url('accountants')}}">Accountants</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="{{url('tax-authorities')}}">Tax Authorities</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="help-center.html">Help Center</a></p>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div> <!-- END FOOTER LINKS -->
-
-
-                    <!-- FOOTER LINKS -->
-                    <div class="col-sm-4 col-md-3 col-xl-2">
-                        <div class="footer-links fl-3">
-
-                            <!-- Title -->
-                            <h6 class="s-17 w-700">Legal</h6>
-
-                            <!-- Links -->
-                            <ul class="foo-links clearfix">
-                                <li>
-                                    <p><a href="#">Terms of Use</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="#">Privacy Policy</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="#">Cookie Policy</a></p>
-                                </li>
-                                <li>
-                                    <p><a href="#">Site Map</a></p>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div> <!-- END FOOTER LINKS -->
-
-
-                    <!-- FOOTER LINKS -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="footer-links fl-4">
-
-                            <!-- Title -->
-                            <h6 class="s-17 w-700">Connect With Us</h6>
-
-                            <!-- Mail Link -->
-                            <p class="footer-mail-link ico-25">
-                                <a href="mailto:yourdomain@mail.com">hello@gbeya.com</a>
+                    <div class="footer-content">
+                        <!-- Logo Section -->
+                        <div class="footer-logo-section">
+                            <img src="{{ asset('images/footer-logo.svg') }}" alt="Logo" class="footer-logo">
+                            <p class="footer-description">
+                                Gbeya simplifies accounting with powerful tools that help you
+                                manage everything tax filing, finances.
                             </p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
 
-                            <!-- Social Links -->
-                            <ul class="footer-socials ico-25 text-center clearfix">
-                                <li><a href="#"><span class="flaticon-facebook"></span></a></li>
-                                <li><a href="#"><span class="flaticon-twitter"></span></a></li>
-                                <li><a href="#"><span class="flaticon-github"></span></a></li>
-                                <li><a href="#"><span class="flaticon-dribbble"></span></a></li>
+                        <!-- Company Links -->
+                        <div class="footer-links-section">
+                            <h3 class="footer-heading">Company</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Contact</a></li>
                             </ul>
-
-                        </div>
-                    </div> <!-- END FOOTER LINKS -->
-
-
-                </div> <!-- END FOOTER CONTENT -->
-
-
-                <hr> <!-- FOOTER DIVIDER LINE -->
-
-
-                <!-- BOTTOM FOOTER -->
-                <div class="bottom-footer">
-                    <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
-
-
-                        <!-- FOOTER COPYRIGHT -->
-                        <div class="col">
-                            <div class="footer-copyright">
-                                <p class="p-sm">&copy; {{ today()->format('Y') }} Gbeya. <span>All Rights Reserved</span></p>
-                            </div>
                         </div>
 
-
-                        <!-- FOOTER SECONDARY LINK -->
-                        <div class="col">
-                            <div class="bottom-secondary-link ico-15 text-end">
-                                <p class="p-sm">
-                                    <!-- <a href="https://themeforest.net/user/dsathemes/portfolio">Made with
-                                        <span class="flaticon-heart color--pink-400"></span> by @DSAThemes
-                                    </a> -->
-                                </p>
-                            </div>
+                        <!-- Help Links -->
+                        <div class="footer-links-section">
+                            <h3 class="footer-heading">Help</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Customer Support</a></li>
+                                <li><a href="#">API Documentation</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
                         </div>
 
+                        <!-- Resources Links -->
+                        <div class="footer-links-section">
+                            <h3 class="footer-heading">Resources</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Forum</a></li>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="#">Training & Learning</a></li>
+                                <li><a href="#">How to - Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    </div> <!-- End row -->
-                </div> <!-- END BOTTOM FOOTER -->
-
-
-            </div> <!-- End container -->
-        </footer> <!-- END FOOTER-3 -->
+                    <!-- Copyright Section -->
+                    <div class="footer-copyright">
+                        <p>&copy; Copyright {{ date('Y') }}, All Rights Reserved by Gbeya</p>
+                    </div>
+                </div>
+            </footer>

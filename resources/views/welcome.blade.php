@@ -241,23 +241,37 @@
                 <div class="txt-block right-column wow fadeInLeft">
 
 
-                    <!-- Section ID -->
-                    <span class="section-id">Professional Accounting Platform</span>
+                <span class="section-id">Accountants & Accounting Firms</span>
 
                     <!-- Title -->
-                    <h2 class="s-46 w-700">Streamline Your Accounting Practice</h2>
-
-                    <!-- Text -->
-                    <p>Transform your accounting practice with our comprehensive platform designed for modern accountants and auditors. Import existing clients, manage projects, and access powerful accounting tools all in one place.</p>
-
+                    <h2 class="s-46 w-700">Expand your reach and offer seamless services to clients through Gbeya</h2>
                     <!-- List -->
                     <ul class="simple-list">
+
                         <li class="list-item">
-                            <p>Seamlessly import your client base via CSV and manage all client relationships through a centralized dashboard</p>
+                            <p> <strong>Find & Manage Clients:</strong>
+                                Connect with individuals, businesses, and government bodies.
+                            </p>
                         </li>
+
                         <li class="list-item">
-                            <p>Access a marketplace of accounting projects and expand your client base through our bidding system</p>
+                            <p> <strong>Automated Tax Filing Tools:</strong>
+                                Use powerful tools to streamline your accounting workflow. 
+                            </p>
                         </li>
+
+                        <li class="list-item">
+                            <p class="mb-0"> <strong>Secure Document Management:</strong>
+                                Upload, review, and store financial records securely.
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p class="mb-0"> <strong>Billing & Payment Integration:<strong>
+                                Get paid faster with seamless invoicing solutions.
+                            </p>
+                        </li>
+
                     </ul>
 
                 </div>
@@ -276,6 +290,112 @@
         </div> <!-- End row -->
     </div> <!-- End container -->
 </section> <!-- END TEXT CONTENT -->
+
+<section id="lnk-1" class="pt-100 ct-02 content-section division">
+    <div class="container">
+        <!-- SECTION CONTENT (ROW) -->
+        <div class="row d-flex align-items-center">
+
+
+            <!-- IMAGE BLOCK -->
+            <div class="col-md-6">
+                <div class="img-block left-column wow fadeInRight">
+                    <img class="img-fluid" src="{{asset('images/img-07.png')}}" alt="content-image">
+                </div>
+            </div>
+
+
+            <!-- TEXT BLOCK -->
+            <div class="col-md-6">
+                <div class="txt-block right-column wow fadeInLeft">
+
+
+
+                    <!-- Title -->
+                    <h2 class="s-24 w-700">Government Tax Bodies</h2>
+
+                    <!-- Text -->
+                    <p>Streamline tax collection, ensure compliance, and enhance financial transparency</p>
+
+                    <!-- List -->
+                    <ul class="simple-list">
+
+                        <li class="list-item">
+                            <p> <strong>Centralized Tax Filing:</strong>
+                                Receive tax filings directly from individuals, businesses, and accountants.
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p> <strong>Automated Compliance Oversight:</strong>
+                                 Easily track submissions and identify discrepancies.
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p class="mb-0"> <strong>Certified Financial Auditing:</strong>
+                                Access vetted accountants for thorough auditing and reporting
+                            </p>
+                        </li>
+
+                        <li class="list-item">
+                            <p class="mb-0"> <strong>Data Security & Confidentiality:<strong>
+                                Safeguard sensitive taxpayer information
+                            </p>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div> <!-- END TEXT BLOCK -->
+
+
+        </div> <!-- END SECTION CONTENT (ROW) -->
+
+
+    </div> <!-- End container -->
+</section>
+
+<div class="accounting-process">
+    <div class="process-container">
+        <div class="text-center">
+            <h2 class="process-subtitle">How It Works / Process</h2>
+            <h1 class="process-title" id="processTitle">
+                Simple Steps to Stress-Free Tax Management
+            </h1>
+
+            <!-- Tabs -->
+            <div class="tab-container">
+                <button class="tab-button active" data-tab="individuals">
+                    Individuals & Companies
+                </button>
+                <button class="tab-button" data-tab="accountants">
+                    Accountants & Accounting Firms
+                </button>
+            </div>
+        </div>
+
+        <div class="process-content">
+            <!-- Left side - Steps -->
+            <div class="steps-container" id="stepsContainer">
+                <!-- Steps will be populated by JavaScript -->
+            </div>
+
+            <!-- Right side - Content -->
+            <div class="content-container">
+                <h2 class="content-title" id="contentTitle">
+                    Manage, Track, and Optimize Your Taxes Seamlessly with Gbeya
+                </h2>
+                <p class="content-description" id="contentDescription">
+                    Easily handle tax filings, payments, and compliance with Gbeya. Get expert guidance and streamline your tax process in minutes.
+                </p>
+                <button class="content-button" id="contentButton">
+                    Find an Accountant
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="why-gbeya" class="pt-100 pb-100 features-section division">
     <div class="container">
@@ -1415,3 +1535,89 @@
 </div> <!-- END MODAL WINDOW (NEWSLETTER FORM) -->
 
 @endsection
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const individualSteps = [
+        {
+            number: 1,
+            title: 'Tell Us Your Needs',
+            description: 'Answer a few questions about your tax situation or business finances.'
+        },
+        {
+            number: 2,
+            title: 'Get Matched with Experts',
+            description: 'Our system finds verified accountants tailored to your needs.'
+        },
+        {
+            number: 3,
+            title: 'Work with Your Accountant',
+            description: 'Collaborate seamlessly, upload documents, and get tax-ready.'
+        }
+    ];
+
+    const accountantSteps = [
+        {
+            number: 1,
+            title: 'Tell Us About Your Practice',
+            description: 'Share details about your accounting firm and the services you offer.'
+        },
+        {
+            number: 2,
+            title: 'Get Matched with Clients',
+            description: 'Our platform connects you with businesses and individuals needing your expertise.'
+        },
+        {
+            number: 3,
+            title: 'Manage Clients & Streamline Workflows',
+            description: 'Collaborate seamlessly, handle tax filings, and grow your practice efficiently.'
+        }
+    ];
+
+    function updateContent(tab) {
+        const steps = tab === 'individuals' ? individualSteps : accountantSteps;
+        const stepsContainer = document.getElementById('stepsContainer');
+        const processTitle = document.getElementById('processTitle');
+        const contentTitle = document.getElementById('contentTitle');
+        const contentDescription = document.getElementById('contentDescription');
+        const contentButton = document.getElementById('contentButton');
+
+        // Update steps
+        stepsContainer.innerHTML = steps.map(step => `
+            <div class="step-item">
+                <div class="step-number">${step.number}</div>
+                <div class="step-content">
+                    <h3 class="step-title">${step.title}</h3>
+                    <p class="step-description">${step.description}</p>
+                </div>
+            </div>
+        `).join('');
+
+        // Update titles and content
+        if (tab === 'individuals') {
+            processTitle.textContent = 'Simple Steps to Stress-Free Tax Management';
+            contentTitle.textContent = 'Manage, Track, and Optimize Your Taxes Seamlessly with Gbeya';
+            contentDescription.textContent = 'Easily handle tax filings, payments, and compliance with Gbeya. Get expert guidance and streamline your tax process in minutes.';
+            contentButton.textContent = 'Find an Accountant';
+        } else {
+            processTitle.textContent = 'Simple Steps to Grow Your Accounting Practice with Gbeya';
+            contentTitle.textContent = 'Expand your client base and grow your practice with Gbeya';
+            contentDescription.textContent = 'Join a trusted network of accountants and firms. Get discovered by potential clients and streamline your tax services with ease.';
+            contentButton.textContent = 'Join Gbeya Today';
+        }
+    }
+
+    // Add click handlers to tabs
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            updateContent(this.dataset.tab);
+        });
+    });
+
+    // Initialize with individuals tab
+    updateContent('individuals');
+});
+</script>
+@endpush

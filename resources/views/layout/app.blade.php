@@ -46,6 +46,8 @@
     <link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/owl.theme.default.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/lunar.css')}}" rel="stylesheet">
+    <link href="{{asset('css/footer.css')}}" rel="stylesheet">
+    <link href="{{asset('css/accounting-process.css')}}" rel="stylesheet">
 
     <!-- ON SCROLL ANIMATION -->
     <link href="{{asset('css/animate.css')}}" rel="stylesheet">
@@ -63,6 +65,7 @@
 
     <!-- RESPONSIVE CSS -->
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     @stack('styles')
 
 </head>
