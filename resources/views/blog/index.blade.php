@@ -552,42 +552,63 @@
 
 <!-- NEWSLETTER-1
 			============================================= -->
-<section id="newsletter-1" class="newsletter-section">
-    <div class="newsletter-overlay">
-        <div class="container">
-            <div class="row d-flex align-items-center row-cols-1 row-cols-lg-2">
+<!-- MODAL WINDOW (NEWSLETTER FORM)
+			============================================= -->
+<!-- <div id="modal-2" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"> -->
 
 
-                <!-- NEWSLETTER TEXT -->
-                <div class="col">
-                    <div class="newsletter-txt">
-                        <h4 class="s-34 w-700">Stay up to date with our news, ideas and updates</h4>
-                    </div>
-                </div>
+            <!-- CLOSE BUTTON -->
+            <!-- <button type="button" class="btn-close ico-10 white-color" data-bs-dismiss="modal" aria-label="Close">
+                <span class="flaticon-cancel"></span>
+            </button> -->
+
+
+            <!-- MODAL CONTENT -->
+            <!-- <div class="modal-body text-center"> -->
+
+
+                <!-- IMAGE -->
+                <!-- <div class="modal-body-img">
+                    <img class="img-fluid" src="{{asset('images/modal-newsletter-blue.jpg')}}" alt="content-image">
+                </div> -->
 
 
                 <!-- NEWSLETTER FORM -->
-                <div class="col">
-                    <form class="newsletter-form">
+                <!-- <div class="modal-body-content"> -->
+
+                    <!-- Title -->
+                    <!-- <h5 class="s-24 w-700">Stay up to date with our news, ideas and updates</h5> -->
+
+                    <!-- Form -->
+                    <!-- <form class="newsletter-form">
 
                         <div class="input-group">
                             <input type="email" autocomplete="off" class="form-control" placeholder="Your email address" required id="s-email">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn--theme hover--theme">Subscribe Now</button>
                             </span>
-                        </div>
+                        </div> -->
 
                         <!-- Newsletter Form Notification -->
-                        <label for="s-email" class="form-notification"></label>
+                        <!-- <label for="s-email" class="form-notification"></label> -->
 
-                    </form>
-                </div> <!-- END NEWSLETTER FORM -->
+                    <!-- </form> -->
+
+                <!-- </div> -->
+                 <!-- END NEWSLETTER FORM -->
 
 
-            </div> <!-- End row -->
-        </div> <!-- End container -->
-    </div> <!-- End newsletter-overlay -->
-</section> <!-- END NEWSLETTER-1 -->
+            <!-- </div>  -->
+            <!-- END MODAL CONTENT -->
+
+
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
+ <!-- END MODAL WINDOW (NEWSLETTER FORM) -->
+ <!-- END NEWSLETTER-1 -->
 
 
 
