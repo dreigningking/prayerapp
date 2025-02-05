@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\ContactFormAutoReply;
+use App\Notifications\ContactFormSubmission;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewsletterSubscription;
+use App\Notifications\NewNewsletterSubscriber;
 
 class GuestController extends Controller
 {
@@ -24,24 +30,33 @@ class GuestController extends Controller
                 'message' => $validator->errors()->first()
             ], 422);
         }
-        
+        //dd($request->all());
 
         try {
-            Contact::create([
+            // Store contact information
+            $contact = Contact::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'type' => $request->type,
                 'message' => $request->message
             ]);
-            // Here you would typically send an email
-            // For now, we'll just return success
-            // TODO: Implement actual email sending logic
+
+            // Send notification to admin(s)
+            $adminEmails = config('mail.admin_emails', ['admin@example.com']); // Default fallback email
+            
+            Notification::route('mail', $adminEmails)
+                ->notify(new ContactFormSubmission($contact->toArray()));
+
+            // Send auto-reply to user
+            Notification::route('mail', $request->email)
+                ->notify(new ContactFormAutoReply($contact->toArray()));
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Thank you for contacting us! We will get back to you shortly.'
             ]);
         } catch (\Exception $e) {
+            Log::error('Contact form submission error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Something went wrong. Please try again later.'
@@ -52,25 +67,40 @@ class GuestController extends Controller
     public function newsletterSubscription(Request $request){
         // Validate the request
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:255'
+            'email' => 'required|email|max:255|unique:subscribers,email'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $validator->errors()->first()
+                'message' => $validator->fails() ? 
+                    $validator->errors()->first() : 
+                    'This email is already subscribed to our newsletter.'
             ], 422);
         }
 
         try {
-            // Here you would typically add the email to your newsletter list
-            // TODO: Implement newsletter subscription logic
+            // Store subscriber information
+            $subscriber = Subscriber::create([
+                'email' => $request->email,
+                'name' => $request->name
+            ]);
+            
+            // Send welcome email to subscriber
+            Notification::route('mail', $request->email)
+                ->notify(new NewsletterSubscription($request->email));
+
+            // Notify admin about new subscriber
+            $adminEmails = config('mail.admin_emails', ['admin@example.com']);
+            Notification::route('mail', $adminEmails)
+                ->notify(new NewNewsletterSubscriber($request->email));
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Thank you for subscribing to our newsletter!'
             ]);
         } catch (\Exception $e) {
+            Log::error('Newsletter subscription error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Something went wrong. Please try again later.'

@@ -1,30 +1,8 @@
+@extends('layout.app')
 @push('styles')
 <link href="{{asset('css/waitlist.css')}}" rel="stylesheet">
 @endpush
 @section('content')
-<header class="header">
-    <nav class="nav-container">
-        <!-- Logo -->
-        <div class="logo-container">
-            <a href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.svg') }}" alt="Gbeya Logo" class="logo">
-            </a>
-        </div>
-
-        <!-- Navigation Links -->
-        <div class="nav-links">
-            <a href="{{ url('/how-it-works') }}" class="nav-link">How it works</a>
-            <a href="{{ url('/testimonials') }}" class="nav-link">Testimonials</a>
-            <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
-            <a href="{{ url('/blog') }}" class="nav-link">Blog</a>
-        </div>
-
-        <!-- Contact Button -->
-        <div class="nav-buttons">
-            <a href="{{ url('/contact') }}" class="contact-btn">Contact us</a>
-        </div>
-    </nav>
-</header>
 
 <div class="hero-section">
     <div class="hero-content">

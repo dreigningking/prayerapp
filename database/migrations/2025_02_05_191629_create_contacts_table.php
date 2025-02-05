@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('type');
-            $table->longText('body');
+            $table->longText('message');
             $table->boolean('is_resolved')->default(0);
             $table->timestamps();
         });

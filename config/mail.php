@@ -113,4 +113,18 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Email Addresses
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the email addresses that should receive admin
+    | notifications. You can specify multiple email addresses.
+    |
+    */
+    'admin_emails' => [
+        env('ADMIN_EMAIL', 'social@gbeya.com'),
+        // Add more admin emails as needed
+    ],
+
 ];
