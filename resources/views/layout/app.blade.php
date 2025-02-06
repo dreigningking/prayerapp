@@ -174,6 +174,7 @@
         e.preventDefault();
 
         let form = $(this);
+        let name = form.find('input[type="text"]');
         let emailInput = form.find('input[type="email"]');
         let notification = form.find('.form-notification');
 
@@ -182,7 +183,8 @@
           method: 'POST',
           data: {
             _token: $('meta[name="csrf-token"]').attr('content'),
-            email: emailInput.val()
+            email: emailInput.val(),
+            name: name.val()
           },
           success: function(response) {
             notification.html(response.message).addClass('text-success');

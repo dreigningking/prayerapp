@@ -9,11 +9,13 @@
                         <img src="{{ asset('images/shape2.svg') }}" alt="shape" class="shape-right">
                         
                         <h4 class="newsletter-title">Subscribe to our newsletter</h4>
-                        <div class="newsletter-form">
+                        <form class="newsletter-form">
                             <input type="text" placeholder="Name" class="newsletter-input">
-                            <input type="text" placeholder="Email Address" class="newsletter-input">
+                            <input type="email" placeholder="Email Address" class="newsletter-input">
                             <button class="subscribe-btn">Subscribe</button>
-                        </div>
+
+                        </form>
+                        <p class="form-notification"></p>
                     </div>
 
                     <div class="footer-content">

@@ -4,7 +4,7 @@
 @endpush
 @section('content')
 
-<div class="hero-section">
+<section class="rel inner-page-hero about-section division d-flex justify-content-center" >
     <div class="hero-content">
         <h1 class="hero-title">
             Experience the Future of Finance and<br>
@@ -26,7 +26,7 @@
     
     <img src="{{ asset('images/pattern.svg') }}" alt="" class="pattern-bg" aria-hidden="true">
     <img src="{{ asset('images/shape-2.svg') }}" alt="" class="shape-2" aria-hidden="true">
-</div>
+</section>
 
 <!-- BRANDS-1
 			============================================= -->

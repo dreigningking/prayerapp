@@ -11,7 +11,7 @@ use App\Notifications\ContactFormAutoReply;
 use App\Notifications\ContactFormSubmission;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewsletterSubscription;
-use App\Notifications\NewNewsletterSubscriber;
+use App\Notifications\AdminNewsletterSubscriber;
 
 class GuestController extends Controller
 {
@@ -68,16 +68,7 @@ class GuestController extends Controller
         // Validate the request
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255|unique:subscribers,email'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $validator->fails() ? 
-                    $validator->errors()->first() : 
-                    'This email is already subscribed to our newsletter.'
-            ], 422);
-        }
+        ],["email.unique"=> "You have already subscribed"]);
 
         try {
             // Store subscriber information
@@ -91,9 +82,9 @@ class GuestController extends Controller
                 ->notify(new NewsletterSubscription($request->email));
 
             // Notify admin about new subscriber
-            $adminEmails = config('mail.admin_emails', ['admin@example.com']);
+            $adminEmails = config('mail.admin_emails', ['social@gbeya.com']);
             Notification::route('mail', $adminEmails)
-                ->notify(new NewNewsletterSubscriber($request->email));
+                ->notify(new AdminNewsletterSubscriber($request->email));
 
             return response()->json([
                 'status' => 'success',
