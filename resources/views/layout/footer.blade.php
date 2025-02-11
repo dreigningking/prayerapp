@@ -3,21 +3,7 @@
 			============================================= -->
             <footer class="footer-container">
                 <div class="footer-main">
-                    <!-- Newsletter Section -->
-                    <div class="newsletter-section" style="background-image: url('{{ asset('images/pattern.svg') }}')">
-                        <img src="{{ asset('images/shape.svg') }}" alt="shape" class="shape-left">
-                        <img src="{{ asset('images/shape2.svg') }}" alt="shape" class="shape-right">
-                        
-                        <h4 class="newsletter-title">Subscribe to our newsletter</h4>
-                        <form class="newsletter-form">
-                            <input type="text" placeholder="Name" class="newsletter-input">
-                            <input type="email" placeholder="Email Address" class="newsletter-input">
-                            <button class="subscribe-btn">Subscribe</button>
-
-                        </form>
-                        <p class="form-notification"></p>
-                    </div>
-
+                    
                     <div class="footer-content">
                         <!-- Logo Section -->
                         <div class="footer-logo-section">

@@ -6,6 +6,10 @@ use App\Http\Controllers\GuestController;
 
 Route::view('/','welcome');
 
+Route::view('individuals-companies','clientele');
+Route::view('accountants-accounting-firms','accountants');
+Route::view('government-tax-bodies','taxauthority');
+
 Route::view('clientele','clientele');
 
 Route::view('accountants','accountants')->name('accountants');

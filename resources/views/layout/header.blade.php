@@ -41,6 +41,14 @@
                                         <li aria-haspopup="true"><a href="#testimonials">Testimonials</a></li>
                                     </ul>
                                 </li>
+                                <li aria-haspopup="true"><a href="{{ url('/') }}" class="h-link">Gbeya For <span class="wsarrow"></span></a>
+                                    <ul class="sub-menu">
+                                        <li aria-haspopup="true"><a href="{{url('individuals-companies')}}">Individuals & Companies</a></li> <!--for everyone -->
+                                        <li aria-haspopup="true"><a href="{{url('accountants-accounting-firms')}}">Accountants & Accounting Firms</a></li> <!-- Service 1   -->
+                                        <li aria-haspopup="true"><a href="{{url('government-tax-bodies')}}">Government Tax Bodies</a></li> <!-- Service 1   -->
+                                        
+                                    </ul>
+                                </li>
 
 
                                 <!-- SIMPLE NAVIGATION LINK -->

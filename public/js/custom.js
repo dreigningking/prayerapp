@@ -189,31 +189,26 @@
 	
 		var owl = $('.reviews-1-wrapper');
 			owl.owlCarousel({
-				items: 3,
-				loop:true,
-				autoplay:true,
-				navBy: 1,
-				autoplayTimeout: 4500,
+				items: 2,              // Show 2 items by default
+				loop: true,
+				autoplay: true,
+				autoplayTimeout: 5000,
 				autoplayHoverPause: true,
-				smartSpeed: 1500,
+				
+				dots: true,
+				margin: 30,           // Increased margin between items
+				smartSpeed: 500,
 				responsive:{
 					0:{
-						items:1
-					},
-					767:{
-						items:1
+						items: 1,     // 1 item on mobile
+						margin: 15
 					},
 					768:{
-						items:2
-					},
-					991:{
-						items:3
-					},
-					1000:{
-						items:3
+						items: 2,     // 2 items on tablets and up
+						margin: 30
 					}
 				}
-		});
+			});
 
 
 		/*----------------------------------------------------*/
