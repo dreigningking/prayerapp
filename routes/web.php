@@ -16,7 +16,7 @@ Route::view('accountants','accountants')->name('accountants');
 
 Route::view('tax-authorities','taxauthority');
 
-Route::view('waitlist','waitlist');
+Route::view('waitlist','waitinglist');
 
 Route::get('pricing', function () {
     return view('pricing');
