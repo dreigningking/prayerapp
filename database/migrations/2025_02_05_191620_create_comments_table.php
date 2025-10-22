@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('type');
-            $table->longText('message');
-            $table->boolean('is_resolved')->default(0);
+            $table->unsignedBigInteger('server_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type');
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('comments');
     }
 };

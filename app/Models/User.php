@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
+        'server_id',
         'name',
         'email',
         'password',
@@ -26,7 +26,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -46,12 +46,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function getNameAttribute()
+    /**
+     * Get the prayers for the user.
+     */
+    public function prayers(): HasMany
     {
-        return ucwords($this->firstname).' '.ucwords($this->surname);
+        return $this->hasMany(Prayer::class);
     }
 
-    public function getImageAttribute(){
-        return $this->photo ? config('app.url')."/storage/$this->photo": null;   
+    /**
+     * Get the comments for the user.
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waitlists', function (Blueprint $table) {
+        Schema::create('integrations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('server_id')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('slug');
+            $table->string('description');
+            $table->string('photo')->nullable();
+            $table->text('connection_details')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('waitlists');
+        Schema::dropIfExists('integrations');
     }
 };
