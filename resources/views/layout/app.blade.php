@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- SITE TITLE -->
-  <title>Gbeya - Digital Financial Platform that drives results</title>
+  <title>Prayer Buddy</title>
 
   <!-- FAVICON AND TOUCH ICONS -->
   <link rel="shortcut icon" href="{{asset('images/fav.png')}}" type="image/x-icon">
