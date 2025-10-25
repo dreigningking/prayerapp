@@ -37,13 +37,15 @@ trait ScheduleInstanceTrait
                 foreach ($prayerTimes as $time) {
                     // Skip if instance already exists
                     if (!$this->instanceExists($schedule->id, $currentDate->toDateString(), $time)) {
-                        ScheduleInstance::create([
-                            'schedule_id' => $schedule->id,
-                            'prayer_id' => $schedule->prayer_id,
-                            'scheduled_date' => $currentDate->toDateString(),
-                            'scheduled_time' => $time,
-                            'status' => 'pending',
-                        ]);
+                    // Combine date and time into a single datetime
+                    $scheduledAt = Carbon::createFromFormat('Y-m-d H:i:s', $currentDate->toDateString() . ' ' . $time);
+
+                    ScheduleInstance::create([
+                        'schedule_id' => $schedule->id,
+                        'prayer_id' => $schedule->prayer_id,
+                        'scheduled_at' => $scheduledAt,
+                        'status' => 'pending',
+                    ]);
                     }
                 }
             }
@@ -73,11 +75,12 @@ trait ScheduleInstanceTrait
             foreach ($prayerTimes as $time) {
                 // Skip if instance already exists
                 if (!$this->instanceExists($schedule->id, $date->toDateString(), $time)) {
+                    $scheduledAt = Carbon::createFromFormat('Y-m-d H:i:s', $date->toDateString() . ' ' . $time);
+
                     ScheduleInstance::create([
                         'schedule_id' => $schedule->id,
                         'prayer_id' => $schedule->prayer_id,
-                        'scheduled_date' => $date->toDateString(),
-                        'scheduled_time' => $time,
+                        'scheduled_at' => $scheduledAt,
                         'status' => 'pending',
                     ]);
                 }
@@ -110,9 +113,10 @@ trait ScheduleInstanceTrait
      */
     private function instanceExists(int $scheduleId, string $date, string $time): bool
     {
+        $scheduledAt = Carbon::createFromFormat('Y-m-d H:i:s', $date . ' ' . $time);
+
         return ScheduleInstance::where('schedule_id', $scheduleId)
-            ->where('scheduled_date', $date)
-            ->where('scheduled_time', $time)
+            ->where('scheduled_at', $scheduledAt)
             ->exists();
     }
 
@@ -159,11 +163,10 @@ trait ScheduleInstanceTrait
         $futureTime = $now->copy()->addMinutes($minutesAhead);
 
         return ScheduleInstance::with(['prayer', 'schedule'])
-            ->where('scheduled_date', $now->toDateString())
-            ->where('scheduled_time', '>=', $now->format('H:i:s'))
-            ->where('scheduled_time', '<=', $futureTime->format('H:i:s'))
+            ->where('scheduled_at', '>=', $now)
+            ->where('scheduled_at', '<=', $futureTime)
             ->where('status', 'pending')
-            ->orderBy('scheduled_time')
+            ->orderBy('scheduled_at')
             ->get()
             ->toArray();
     }
@@ -173,9 +176,9 @@ trait ScheduleInstanceTrait
      */
     public function cleanupOldInstances(): int
     {
-        $cutoffDate = now()->subMonths(3)->toDateString();
+        $cutoffDate = now()->subMonths(3);
 
-        return ScheduleInstance::where('scheduled_date', '<', $cutoffDate)
+        return ScheduleInstance::where('scheduled_at', '<', $cutoffDate)
             ->delete();
     }
 }

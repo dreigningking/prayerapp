@@ -63,26 +63,31 @@
             @foreach($prayerPoints as $prayer)
             <div class="prayer-card">
                 <div class="prayer-header">
-                    <h3 class="prayer-title">{{ $prayer->title }}</h3>
-                    <span class="prayer-status status-active">{{ $prayer->status }}</span>
+                    <a href="{{ route('prayer-point.show', $prayer) }}" class="prayer-title-link">
+                        <h3 class="prayer-title">{{ $prayer->title }}</h3>
+                    </a>
+                    <div>
+                        <span class="comment-count">
+                            <i class="bi bi-chat"></i> {{ $prayer->comments->count() }}
+                        </span>
+                        <span class="prayer-status status-active">{{ $prayer->status }}</span>
+                    </div>
+                    
                 </div>
 
                 <p class="prayer-content">{{ $prayer->body }}</p>
 
-                
-
                 @php
                     $nextInstance = $prayer->scheduleInstances()
-                        ->where('scheduled_date', '>=', now()->toDateString())
+                        ->where('scheduled_at', '>=', now())
                         ->where('status', 'pending')
-                        ->orderBy('scheduled_date')
-                        ->orderBy('scheduled_time')
+                        ->orderBy('scheduled_at')
                         ->first();
                 @endphp
 
                 @if($nextInstance)
                 <div class="next-schedule">
-                    <strong>Next Prayer:</strong> {{ $nextInstance->scheduled_date->format('M j, Y') }} at {{ $nextInstance->scheduled_time->format('h:i A') }}
+                    <strong>Next Prayer:</strong> {{ $nextInstance->scheduled_at->format('M j, Y h:i A') }}
                 </div>
                 @endif
                 <div class="prayer-meta">
@@ -93,69 +98,36 @@
                             <i class="bi bi-file-earmark"></i> View File
                         </button>
                         @endif
-                        <button class="view-schedule-btn" onclick="viewSchedule({{ $prayer->id }})">
+                        <a class="view-schedule-btn" href="{{route('prayer-point.show',$prayer)}}">
                             View Schedule
-                        </button>
-                        <button class="comment-btn" onclick="toggleComments({{ $prayer->id }})">
-                            <i class="bi bi-chat"></i> Comments ({{ $prayer->comments->count() }})
-                        </button>
+                        </a>
+                        
                     </div>
-                </div>
-
-                <!-- Comments Section -->
-                <div class="comments-section" id="comments-{{ $prayer->id }}" style="display: none;">
-                    <div class="comments-list" id="comments-list-{{ $prayer->id }}">
-                        @foreach($prayer->comments as $comment)
-                        <div class="comment-item">
-                            <div class="comment-header">
-                                <strong>{{ $comment->user->name ?? 'Anonymous' }}</strong>
-                                <small>{{ $comment->created_at->diffForHumans() }}</small>
-                            </div>
-                            <p class="comment-body">{{ $comment->body }}</p>
-                        </div>
-                        @endforeach
-                    </div>
-
-                    <form class="comment-form" onsubmit="submitComment(event, {{ $prayer->id }})">
-                        @csrf
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add a comment..." name="body" required>
-                            <button class="btn btn-primary" type="submit">Post</button>
-                        </div>
-                    </form>
                 </div>
             </div>
             @endforeach
 
             <!-- Pagination -->
             <div class="pagination-container">
-                <div class="pagination-links">
-                    @if($prayerPoints->hasPages())
-                        {{ $prayerPoints->appends(request()->query())->links() }}
-                    @endif
+                @if($prayerPoints->hasPages())
+                <div class="pagination-info">
+                    Showing {{ $prayerPoints->firstItem() }} to {{ $prayerPoints->lastItem() }} of {{ $prayerPoints->total() }} results
                 </div>
+                <div class="pagination-links">
+                    {{ $prayerPoints->appends(request()->query())->links() }}
+                </div>
+                @endif
             </div>
         @else
             <div class="empty-state">
                 <i class="bi bi-journal-x"></i>
-                <h3>No Prayer Points Yet</h3>
-                <p>Click the + button to add your first prayer point</p>
+                <h3>No Prayer Points Found</h3>
+                <p>Try adjusting your filters or search terms</p>
             </div>
         @endif
     </div>
 
-    <!-- File View Modal -->
-    <div class="file-modal" id="fileModal">
-        <div class="file-modal-content">
-            <div class="file-modal-header">
-                <h5 class="file-modal-title" id="fileModalTitle"></h5>
-                <button class="file-modal-close" id="fileModalClose">&times;</button>
-            </div>
-            <div class="file-modal-body" id="fileModalBody">
-                <!-- File content will be loaded here -->
-            </div>
-        </div>
-    </div>
+    @include('prayer-point.file-modal')
 @endsection
 
 @push('styles')
@@ -367,6 +339,16 @@
         margin-right: 12px;
     }
 
+    .prayer-title-link {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s;
+    }
+
+    .prayer-title-link:hover {
+        color: #667eea;
+    }
+
     .prayer-status {
         padding: 4px 12px;
         border-radius: 20px;
@@ -429,92 +411,7 @@
         font-size: 14px;
     }
 
-    /* File View Modal */
-    .file-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 1100;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .file-modal.active {
-        display: flex;
-    }
-
-    .file-modal-content {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        max-width: 90vw;
-        max-height: 90vh;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .file-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .file-modal-title {
-        margin: 0;
-        font-size: 18px;
-        font-weight: 600;
-        color: #333;
-    }
-
-    .file-modal-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #666;
-        padding: 0;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: background 0.2s;
-    }
-
-    .file-modal-close:hover {
-        background: #f8f9fa;
-        color: #333;
-    }
-
-    .file-modal-body {
-        max-height: 70vh;
-        overflow: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .file-image {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .file-pdf {
-        width: 100%;
-        height: 600px;
-        border: none;
-        border-radius: 8px;
-    }
+    
 
     .next-schedule {
         background: #f8f9fa;
@@ -531,8 +428,9 @@
     .view-schedule-btn {
         background: #667eea;
         color: white;
+        text-decoration: none;
         border: none;
-        border-radius: 6px;
+        border-radius: 6px; 
         padding: 4px 8px;
         font-size: 12px;
         cursor: pointer;
@@ -541,87 +439,6 @@
 
     .view-schedule-btn:hover {
         background: #5a67d8;
-    }
-
-    /* Comments */
-    .comment-btn {
-        background: #6c757d;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        padding: 4px 8px;
-        font-size: 12px;
-        cursor: pointer;
-        transition: background 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .comment-btn:hover {
-        background: #5a6268;
-    }
-
-    .comments-section {
-        margin-top: 16px;
-        padding: 16px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border: 1px solid #e9ecef;
-    }
-
-    .comments-list {
-        margin-bottom: 16px;
-    }
-
-    .comment-item {
-        padding: 12px;
-        background: white;
-        border-radius: 6px;
-        margin-bottom: 8px;
-        border: 1px solid #e9ecef;
-    }
-
-    .comment-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-        font-size: 12px;
-    }
-
-    .comment-header strong {
-        color: #333;
-    }
-
-    .comment-header small {
-        color: #666;
-    }
-
-    .comment-body {
-        margin: 0;
-        font-size: 14px;
-        color: #555;
-        line-height: 1.4;
-    }
-
-    .comment-form .input-group {
-        display: flex;
-        gap: 8px;
-    }
-
-    .comment-form .form-control {
-        flex: 1;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-
-    .comment-form .btn {
-        border-radius: 6px;
-        padding: 8px 16px;
-        font-size: 14px;
     }
 
     /* Pagination */
@@ -677,23 +494,7 @@ $(document).ready(function() {
         sortPrayers($(this).val());
     });
 
-    function filterPrayers(filter) {
-        // Implement filtering logic
-        console.log('Filtering by:', filter);
-        // TODO: Filter prayer items based on status
-    }
-
-    function searchPrayers(query) {
-        // Implement search logic
-        console.log('Searching for:', query);
-        // TODO: Search through prayer titles and content
-    }
-
-    function sortPrayers(sortBy) {
-        // Implement sorting logic
-        console.log('Sorting by:', sortBy);
-        // TODO: Sort prayer items
-    }
+    // Filter, search, and sort functions are now handled by URL manipulation
 
     // TODO: Load prayers from API
     loadPrayers();
@@ -716,132 +517,39 @@ function loadPrayers() {
     console.log('Loading prayers...');
 }
 
-function viewSchedule(prayerId) {
-    // TODO: Implement modal to show upcoming schedule instances for this prayer
-    alert('View schedule for prayer ID: ' + prayerId + ' - Feature coming soon!');
+
+
+function filterPrayers(filter) {
+    const currentUrl = new URL(window.location);
+    currentUrl.searchParams.set('filter', filter);
+    currentUrl.searchParams.set('page', 1); // Reset to first page
+    window.location.href = currentUrl.toString();
 }
 
-function viewFile(filePath, title) {
-    // Set modal title
-    $('#fileModalTitle').text('Attached File - ' + title);
-
-    // Determine file type and display content
-    const fileUrl = '/storage/' + filePath;
-    const fileExtension = filePath.split('.').pop().toLowerCase();
-
-    let content = '';
-
-    if (['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'].includes(fileExtension)) {
-        // Display image
-        content = '<img src="' + fileUrl + '" alt="' + title + '" class="file-image">';
-    } else if (fileExtension === 'pdf') {
-        // Display PDF
-        content = '<embed src="' + fileUrl + '" type="application/pdf" class="file-pdf">';
+function searchPrayers(query) {
+    const currentUrl = new URL(window.location);
+    if (query) {
+        currentUrl.searchParams.set('search', query);
     } else {
-        // Unsupported file type
-        content = '<div class="text-center"><p>Unsupported file type</p><a href="' + fileUrl + '" target="_blank" class="btn btn-primary">Download File</a></div>';
+        currentUrl.searchParams.delete('search');
     }
-
-    // Set modal content
-    $('#fileModalBody').html(content);
-
-    // Show modal
-    $('#fileModal').addClass('active');
+    currentUrl.searchParams.set('page', 1); // Reset to first page
+    window.location.href = currentUrl.toString();
 }
 
-function toggleComments(prayerId) {
-    const commentsSection = $('#comments-' + prayerId);
-    const isVisible = commentsSection.is(':visible');
-
-    // Hide all other comment sections
-    $('.comments-section').hide();
-
-    // Toggle current section
-    if (isVisible) {
-        commentsSection.hide();
-    } else {
-        commentsSection.show();
-        loadComments(prayerId);
-    }
+function sortPrayers(sortBy) {
+    const currentUrl = new URL(window.location);
+    currentUrl.searchParams.set('sort', sortBy);
+    currentUrl.searchParams.set('page', 1); // Reset to first page
+    window.location.href = currentUrl.toString();
 }
 
-function loadComments(prayerId) {
-    // Load comments via AJAX
-    $.get('/prayer-points/' + prayerId + '/comments')
-        .done(function(data) {
-            if (data.success) {
-                updateCommentsList(prayerId, data.comments);
-            }
-        })
-        .fail(function() {
-            console.error('Failed to load comments');
-        });
+function loadPrayers() {
+    // This function is now handled by URL-based filtering
+    // The page will reload with the new parameters
+    console.log('Page will reload with new filter parameters');
 }
 
-function updateCommentsList(prayerId, comments) {
-    const commentsList = $('#comments-list-' + prayerId);
-    commentsList.empty();
 
-    if (comments.length === 0) {
-        commentsList.html('<p class="text-muted">No comments yet. Be the first to comment!</p>');
-    } else {
-        comments.forEach(function(comment) {
-            commentsList.append(`
-                <div class="comment-item">
-                    <div class="comment-header">
-                        <strong>${comment.user_name}</strong>
-                        <small>${comment.created_at}</small>
-                    </div>
-                    <p class="comment-body">${comment.body}</p>
-                </div>
-            `);
-        });
-    }
-}
-
-function submitComment(event, prayerId) {
-    event.preventDefault();
-
-    const form = event.target;
-    const formData = new FormData(form);
-
-    // Submit comment via AJAX
-    $.ajax({
-        url: '/prayer-points/' + prayerId + '/comments',
-        method: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    })
-    .done(function(data) {
-        if (data.success) {
-            // Clear form
-            form.reset();
-
-            // Reload comments
-            loadComments(prayerId);
-
-            // Update comment count
-            updateCommentCount(prayerId);
-        }
-    })
-    .fail(function() {
-        alert('Failed to post comment. Please try again.');
-    });
-}
-
-function updateCommentCount(prayerId) {
-    // Update the comment button count
-    const commentBtn = $('.comment-btn').filter(function() {
-        return $(this).attr('onclick').includes(prayerId);
-    });
-
-    // For now, just reload the page to update counts
-    // In a real app, you'd update the count dynamically
-    location.reload();
-}
 </script>
 @endpush

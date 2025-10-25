@@ -15,8 +15,7 @@ class ScheduleInstance extends Model
     protected $fillable = [
         'schedule_id',
         'prayer_id',
-        'scheduled_date',
-        'scheduled_time',
+        'scheduled_at',
         'status',
         'prayed_at',
         'skipped_at',
@@ -29,8 +28,7 @@ class ScheduleInstance extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'scheduled_date' => 'date',
-        'scheduled_time' => 'datetime:H:i',
+        'scheduled_at' => 'datetime',
         'prayed_at' => 'datetime',
         'skipped_at' => 'datetime',
         'notified_at' => 'datetime',
@@ -81,7 +79,7 @@ class ScheduleInstance extends Model
      */
     public function scopeUpcoming($query)
     {
-        return $query->where('scheduled_date', '>=', today())
+        return $query->where('scheduled_at', '>=', now())
                     ->where('status', 'pending');
     }
 
@@ -90,6 +88,6 @@ class ScheduleInstance extends Model
      */
     public function scopePast($query)
     {
-        return $query->where('scheduled_date', '<', today());
+        return $query->where('scheduled_at', '<', now());
     }
 }

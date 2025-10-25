@@ -19,7 +19,7 @@ class GenerateScheduleInstances extends Command
     /**
      * The console command description.
      */
-    protected $description = 'Generate schedule instances for today + 30 days ahead, and cleanup old instances';
+    protected $description = 'Generate schedule instances for today + 30 days ahead, cleanup old instances, and mark past pending instances as skipped';
 
     /**
      * Execute the console command.
@@ -39,6 +39,10 @@ class GenerateScheduleInstances extends Command
         // Always cleanup old instances
         $deleted = $this->cleanupOldInstances();
         $this->info("Cleaned up {$deleted} old instances (older than 3 months)");
+
+        // Mark past pending instances as skipped
+        $skipped = $this->markPastPendingAsSkipped();
+        $this->info("Marked {$skipped} past pending instances as skipped");
 
         $this->info('Schedule instance generation completed!');
     }
@@ -82,7 +86,7 @@ class GenerateScheduleInstances extends Command
 
             // Count instances generated for this schedule on tomorrow
             $futureInstances = \App\Models\ScheduleInstance::where('schedule_id', $schedule->id)
-                ->where('scheduled_date', '>=', $tomorrow->toDateString())
+                ->whereDate('scheduled_at', '>=', $tomorrow->toDateString())
                 ->count();
 
             $totalInstances += $futureInstances;
@@ -97,13 +101,13 @@ class GenerateScheduleInstances extends Command
     private function generateInstancesForSchedule(Schedule $schedule): int
     {
         $beforeCount = \App\Models\ScheduleInstance::where('schedule_id', $schedule->id)
-            ->where('scheduled_date', '>=', now()->toDateString())
+            ->whereDate('scheduled_at', '>=', now()->toDateString())
             ->count();
 
         $this->generateInstances($schedule);
 
         $afterCount = \App\Models\ScheduleInstance::where('schedule_id', $schedule->id)
-            ->where('scheduled_date', '>=', now()->toDateString())
+            ->whereDate('scheduled_at', '>=', now()->toDateString())
             ->count();
 
         return $afterCount - $beforeCount;
@@ -117,8 +121,21 @@ class GenerateScheduleInstances extends Command
         $cutoffDate = now()->addDays(30)->toDateString();
 
         return \App\Models\ScheduleInstance::where('schedule_id', $schedule->id)
-            ->where('scheduled_date', '<=', $cutoffDate)
+            ->whereDate('scheduled_at', '<=', $cutoffDate)
             ->where('status', 'pending')
             ->count();
+    }
+
+    /**
+     * Mark past pending instances as skipped
+     */
+    private function markPastPendingAsSkipped(): int
+    {
+        return \App\Models\ScheduleInstance::where('scheduled_at', '<', now())
+            ->where('status', 'pending')
+            ->update([
+                'status' => 'skipped',
+                'skipped_at' => now(),
+            ]);
     }
 }

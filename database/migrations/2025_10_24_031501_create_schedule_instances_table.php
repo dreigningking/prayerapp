@@ -15,15 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('schedule_id');
             $table->unsignedBigInteger('prayer_id');
-            $table->date('scheduled_date');
-            $table->time('scheduled_time');
+            $table->timestamp('scheduled_at');
             $table->enum('status', ['pending', 'prayed', 'skipped', 'missed'])->default('pending');
             $table->timestamp('prayed_at')->nullable();
             $table->timestamp('skipped_at')->nullable();
             $table->timestamp('notified_at')->nullable(); // when notification was sent
-            $table->index(['prayer_id', 'scheduled_date']);
-            $table->index(['status', 'scheduled_date']);
-            $table->index('scheduled_date');
+            $table->index(['prayer_id', 'scheduled_at']);
+            $table->index(['status', 'scheduled_at']);
+            $table->index('scheduled_at');
             $table->timestamps();
         });
     }

@@ -19,8 +19,7 @@ class ScheduleInstanceController extends Controller
     {
         $instances = ScheduleInstance::with(['prayer', 'schedule'])
             ->upcoming()
-            ->orderBy('scheduled_date')
-            ->orderBy('scheduled_time')
+            ->orderBy('scheduled_at')
             ->get();
 
         return response()->json([
@@ -36,8 +35,7 @@ class ScheduleInstanceController extends Controller
     {
         $instances = ScheduleInstance::with(['prayer', 'schedule'])
             ->past()
-            ->orderBy('scheduled_date', 'desc')
-            ->orderBy('scheduled_time', 'desc')
+            ->orderBy('scheduled_at', 'desc')
             ->paginate(20);
 
         return response()->json([
@@ -52,8 +50,8 @@ class ScheduleInstanceController extends Controller
     public function today(Request $request): JsonResponse
     {
         $instances = ScheduleInstance::with(['prayer', 'schedule'])
-            ->where('scheduled_date', today())
-            ->orderBy('scheduled_time')
+            ->whereDate('scheduled_at', today())
+            ->orderBy('scheduled_at')
             ->get();
 
         return response()->json([
@@ -109,21 +107,17 @@ class ScheduleInstanceController extends Controller
         $today = today();
 
         $stats = [
-            'today_completed' => ScheduleInstance::where('scheduled_date', $today)
+            'today_completed' => ScheduleInstance::whereDate('scheduled_at', $today)
                 ->where('status', 'prayed')
                 ->count(),
-            'today_total' => ScheduleInstance::where('scheduled_date', $today)
+            'today_total' => ScheduleInstance::whereDate('scheduled_at', $today)
                 ->count(),
-            'week_completed' => ScheduleInstance::whereBetween('scheduled_date', [
-                    $today->startOfWeek(),
-                    $today->endOfWeek()
-                ])
+            'week_completed' => ScheduleInstance::whereDate('scheduled_at', '>=', $today->startOfWeek())
+                ->whereDate('scheduled_at', '<=', $today->endOfWeek())
                 ->where('status', 'prayed')
                 ->count(),
-            'week_total' => ScheduleInstance::whereBetween('scheduled_date', [
-                    $today->startOfWeek(),
-                    $today->endOfWeek()
-                ])
+            'week_total' => ScheduleInstance::whereDate('scheduled_at', '>=', $today->startOfWeek())
+                ->whereDate('scheduled_at', '<=', $today->endOfWeek())
                 ->count(),
             'upcoming_count' => ScheduleInstance::upcoming()->count(),
         ];

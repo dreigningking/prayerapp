@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Select2 CSS -->
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Custom CSS -->
     <style>
         body {
@@ -227,13 +229,13 @@
             border-radius: 8px;
         }
 
-        .form-check-input {
+        .form-style .form-check-input {
             width: 50px;
             height: 24px;
             margin-right: 10px;
         }
 
-        .form-check-input:checked {
+        .form-style .form-check-input:checked {
             background-color: #667eea;
             border-color: #667eea;
         }
@@ -476,7 +478,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form action="{{route('prayer-point.store')}}" method="post" enctype="multipart/form-data">@csrf
+            <form class="form-style" action="{{route('prayer-point.store')}}" method="post" enctype="multipart/form-data">@csrf
                 <div class="form-group">
                     <label for="prayerTitle" class="form-label">Title *</label>
                     <input type="text" class="form-control" id="prayerTitle" name="title" required placeholder="Enter prayer title">

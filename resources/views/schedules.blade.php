@@ -13,53 +13,116 @@
             <i class="bi bi-calendar-event"></i>
             <div class="stat-info">
                 <h3>Total Schedules</h3>
-                <span class="stat-number">0</span>
+                <span class="stat-number">{{ $stats['total_schedules'] }}</span>
             </div>
         </div>
         <div class="stat-card">
             <i class="bi bi-clock-fill"></i>
             <div class="stat-info">
                 <h3>Today's Instances</h3>
-                <span class="stat-number">0</span>
+                <span class="stat-number">{{ $stats['today_instances'] }}</span>
             </div>
         </div>
         <div class="stat-card">
             <i class="bi bi-play-circle"></i>
             <div class="stat-info">
                 <h3>Active</h3>
-                <span class="stat-number">0</span>
+                <span class="stat-number">{{ $stats['active'] }}</span>
             </div>
         </div>
         <div class="stat-card">
             <i class="bi bi-pause-circle"></i>
             <div class="stat-info">
                 <h3>Inactive</h3>
-                <span class="stat-number">0</span>
+                <span class="stat-number">{{ $stats['inactive'] }}</span>
             </div>
         </div>
     </div>
 
-    <div class="actions-section">
-        <button class="btn btn-primary action-btn">
-            <i class="bi bi-plus-circle"></i>
-            Create New Schedule
-        </button>
-        <button class="btn btn-outline-primary action-btn">
-            <i class="bi bi-gear"></i>
-            Bulk Actions
-        </button>
+
+    <!-- Filter buttons -->
+    <div class="filter-section">
+        <button class="btn filter-btn {{ $filter == 'today' ? 'active' : '' }}" data-filter="today">Today</button>
+        <button class="btn filter-btn {{ $filter == 'tomorrow' ? 'active' : '' }}" data-filter="tomorrow">Tomorrow</button>
+        <button class="btn filter-btn {{ $filter == 'this_week' ? 'active' : '' }}" data-filter="this_week">This Week</button>
+        <button class="btn filter-btn {{ $filter == 'this_month' ? 'active' : '' }}" data-filter="this_month">This Month</button>
+        <button class="btn filter-btn {{ $filter == 'custom' ? 'active' : '' }}" data-filter="custom">Custom</button>
     </div>
 
-    <div class="schedule-list" id="scheduleList">
-        <!-- Schedule items will be loaded here -->
-        <div class="empty-state">
-            <i class="bi bi-calendar-x"></i>
-            <h3>No Prayer Schedules Yet</h3>
-            <p>Create your first schedule to establish consistent prayer routines</p>
-            <button class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i>
-                Create Schedule
-            </button>
+    <div class="schedule-list">
+        @if($schedules->count() > 0)
+            @foreach($schedules as $instance)
+                <div class="schedule-item">
+                    <div class="schedule-header">
+                        <h4>{{ $instance->prayer->title ?? 'Untitled Prayer' }}</h4>
+                        <div class="instance-badges">
+                            <span class="schedule-status {{ $instance->status }}">
+                                {{ ucfirst($instance->status) }}
+                            </span>
+                            <span class="instance-date">{{ $instance->scheduled_at->format('M j, Y') }}</span>
+                        </div>
+                    </div>
+                    <div class="schedule-details">
+                        <p><i class="bi bi-clock"></i> Scheduled Time: {{ $instance->scheduled_at->format('h:i A') }}</p>
+                        @if($instance->schedule && $instance->schedule->reminder_minutes)
+                            <p><i class="bi bi-bell"></i> Reminder: {{ $instance->schedule->reminder_minutes }} minutes before</p>
+                        @endif
+                        <div class="instance-actions">
+                            @if($instance->status === 'pending')
+                                <button class="btn btn-sm btn-outline-success mark-prayed" data-id="{{ $instance->id }}">
+                                    <i class="bi bi-check"></i> Mark as Prayed
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning mark-skipped" data-id="{{ $instance->id }}">
+                                    <i class="bi bi-skip-forward"></i> Mark as Skipped
+                                </button>
+                            @elseif($instance->status === 'prayed')
+                                <span class="text-success"><i class="bi bi-check-circle"></i> Completed</span>
+                            @elseif($instance->status === 'skipped')
+                                <span class="text-warning"><i class="bi bi-dash-circle"></i> Skipped</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            <!-- Pagination -->
+            <div class="pagination-wrapper">
+                {{ $schedules->appends(request()->query())->links() }}
+            </div>
+        @else
+            <div class="empty-state">
+                <i class="bi bi-calendar-x"></i>
+                <h3>No Prayer Instances</h3>
+                <p>No prayer instances found for the selected period</p>
+            </div>
+        @endif
+    </div>
+
+    <!-- Custom Date Range Modal -->
+    <div class="modal fade" id="customDateModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select Date Range</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="customDateForm">
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="startDate" name="start_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="endDate" name="end_date" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="applyCustomFilter">Apply Filter</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -132,6 +195,114 @@
         font-size: 24px;
         font-weight: bold;
         color: #333;
+    }
+
+    .filter-section {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        border: 2px solid #667eea;
+        background: transparent;
+        color: #667eea;
+        border-radius: 20px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: #667eea;
+        color: white;
+    }
+
+    .schedule-item {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e0e0e0;
+    }
+
+    .schedule-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .schedule-header h4 {
+        margin: 0;
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .schedule-status {
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .schedule-status.pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .schedule-status.prayed {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .schedule-status.skipped {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .instance-badges {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-end;
+    }
+
+    .instance-date {
+        font-size: 12px;
+        color: #666;
+        font-weight: 400;
+    }
+
+    .instance-actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .schedule-details p {
+        margin-bottom: 8px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .schedule-details i {
+        color: #667eea;
+        font-size: 14px;
+    }
+
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
     }
 
     .actions-section {
@@ -244,7 +415,7 @@
 
     @media (max-width: 576px) {
         .schedule-stats {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .actions-section .btn {
@@ -257,23 +428,159 @@
 @push('scripts')
 <script>
 $(document).ready(function() {
-    // Load schedules
-    loadSchedules();
+    // Handle filter buttons
+    $('.filter-btn').on('click', function() {
+        const filter = $(this).data('filter');
+
+        if (filter === 'custom') {
+            $('#customDateModal').modal('show');
+        } else {
+            applyFilter(filter);
+        }
+    });
+
+    // Handle custom filter apply
+    $('#applyCustomFilter').on('click', function() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+
+        if (startDate && endDate) {
+            applyFilter('custom', startDate, endDate);
+        } else {
+            alert('Please select both start and end dates.');
+        }
+    });
 
     // Load today's prayer instances
-    loadTodaysPrayers();
+    // loadTodaysPrayers();
+
+    // Handle mark as prayed/skipped
+    $(document).on('click', '.mark-prayed', function() {
+        const instanceId = $(this).data('id');
+        markAsPrayed(instanceId);
+    });
+
+    $(document).on('click', '.mark-skipped', function() {
+        const instanceId = $(this).data('id');
+        markAsSkipped(instanceId);
+    });
 });
 
-function loadSchedules() {
-    // TODO: Load user's prayer schedules from API
-    console.log('Loading schedules...');
+function applyFilter(filter, startDate = null, endDate = null) {
+    let url = '{{ route("schedules") }}?filter=' + filter;
+
+    if (filter === 'custom' && startDate && endDate) {
+        url += '&start_date=' + startDate + '&end_date=' + endDate;
+    }
+
+    window.location.href = url;
 }
 
 function loadTodaysPrayers() {
-    // TODO: Load today's scheduled prayer instances
-    console.log('Loading today\'s prayers...');
+    $.ajax({
+        url: '/',
+        method: 'GET',
+        success: function(response) {
+            if (response.success && response.data.length > 0) {
+                displayTodaysPrayers(response.data);
+            } else {
+                $('#upcomingList').html('<div class="empty-upcoming"><i class="bi bi-clock"></i><p>No prayers scheduled for today</p></div>');
+            }
+        },
+        error: function() {
+            $('#upcomingList').html('<div class="empty-upcoming"><i class="bi bi-exclamation-triangle"></i><p>Unable to load today\'s prayers</p></div>');
+        }
+    });
 }
 
-// TODO: Add event handlers for create new schedule, edit schedules, etc.
+function displayTodaysPrayers(prayers) {
+    let html = '';
+    prayers.forEach(function(prayer) {
+        const time = prayer.scheduled_at.substring(11, 16); // HH:MM format
+        html += `
+            <div class="prayer-instance">
+                <div class="prayer-time">${time}</div>
+                <div class="prayer-title">${prayer.prayer ? prayer.prayer.title : 'Untitled Prayer'}</div>
+                <div class="prayer-actions">
+                    <button class="btn btn-sm btn-outline-success mark-prayed" data-id="${prayer.id}">
+                        <i class="bi bi-check"></i> Prayed
+                    </button>
+                    <button class="btn btn-sm btn-outline-warning mark-skipped" data-id="${prayer.id}">
+                        <i class="bi bi-skip-forward"></i> Skip
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    $('#upcomingList').html(html);
+
+    // Add additional styles for prayer instances if needed
+    if (!$('#prayerInstanceStyles').length) {
+        $('head').append(`
+            <style id="prayerInstanceStyles">
+                .prayer-instance {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 15px;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    margin-bottom: 10px;
+                    background: #f8f9fa;
+                }
+                .prayer-time {
+                    font-weight: bold;
+                    color: #667eea;
+                    min-width: 60px;
+                }
+                .prayer-title {
+                    flex: 1;
+                    margin: 0 15px;
+                    font-weight: 500;
+                }
+                .prayer-actions {
+                    display: flex;
+                    gap: 10px;
+                }
+            </style>
+        `);
+    }
+}
+
+function markAsPrayed(instanceId) {
+    $.ajax({
+        url: "{{ url('/api/schedule-instances') }}/" + instanceId + "/prayed",
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        },
+        success: function(response) {
+            if (response.success) {
+                location.reload(); // Refresh page to show updated status
+            }
+        },
+        error: function() {
+            alert("Error updating prayer instance");
+        }
+    });
+}
+
+function markAsSkipped(instanceId) {
+    $.ajax({
+        url: "{{ url('/api/schedule-instances') }}/" + instanceId + "/skipped",
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        },
+        success: function(response) {
+            if (response.success) {
+                location.reload(); // Refresh page to show updated status
+            }
+        },
+        error: function() {
+            alert("Error updating prayer instance");
+        }
+    });
+}
 </script>
 @endpush

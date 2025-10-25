@@ -6,6 +6,7 @@ use App\Models\ScheduleDay;
 use App\Models\ScheduleDate;
 use App\Models\ScheduleTime;
 use App\Models\ScheduleMonth;
+use App\Models\ScheduleInstance;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;

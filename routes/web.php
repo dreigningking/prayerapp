@@ -1,14 +1,25 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\ScheduleInstance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\PrayerPointController;
 use App\Http\Controllers\ScheduleInstanceController;
 
 // Public routes
+// Route::get('run',function(){
+//     $schedules = ScheduleInstance::all();
+//     foreach($schedules as $schedule){
+//         $schedule->scheduled_at = $schedule->scheduled_date;
+//         $schedule->save();
+//     }
+//     return 'done';
+// });
 Route::view('/','welcome')->name('index');
 
 // Auth routes
@@ -24,12 +35,15 @@ Route::middleware(['auth'])->group(function () {
     Route::view('dashboard','dashboard')->name('dashboard');
     Route::group(['prefix'=> 'prayer-points','as'=> 'prayer-point.'],function(){
         Route::get('/',[PrayerPointController::class,'index'])->name('index');
-        Route::post('prayer-point/store',[PrayerPointController::class,'store'])->name('store');
+        Route::post('store',[PrayerPointController::class,'store'])->name('store');
+        Route::get('show/{prayer}',[PrayerPointController::class,'show'])->name('show');
+        
         Route::post('{prayer}/comments',[PrayerPointController::class,'storeComment'])->name('comment.store');
-        Route::get('{prayer}/comments',[PrayerPointController::class,'getComments'])->name('comment.index');
+        Route::delete('comments/{comment}',[PrayerPointController::class,'deleteComment'])->name('comment.delete');
+        Route::post('schedule-instances/bulk-update',[PrayerPointController::class,'bulkUpdateInstances'])->name('instances.bulk-update');
     });
     
-    Route::view('schedules','schedules')->name('schedules');
+    Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules');
     Route::view('support','support')->name('support');
 });
 

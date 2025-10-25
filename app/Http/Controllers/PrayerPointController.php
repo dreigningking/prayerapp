@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Traits\ScheduleInstanceTrait;
 use App\Models\Comment;
+use App\Models\ScheduleInstance;
 
 
 
@@ -20,16 +21,57 @@ class PrayerPointController extends Controller
     use ScheduleInstanceTrait;
     
 
-    public function index()
+    public function index(Request $request)
     {
-        // Get user's prayer points with schedules
-        $prayerPoints = Prayer::with('schedules')
-            ->where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->paginate(2);
+        $userId = Auth::id();
+        $query = Prayer::where('user_id', $userId);
+
+        // Apply filters
+        $filter = $request->get('filter', 'all');
+        $search = $request->get('search');
+        $sort = $request->get('sort', 'newest');
+
+        // Filter logic
+        switch($filter) {
+            case 'active':
+                $query->where('status', 'active');
+                break;
+            case 'completed':
+                $query->where('status', 'completed');
+                break;
+            case 'archived':
+                $query->where('status', 'completed')
+                      ->where('completed_at', '<', now()->subMonths(3));
+                break;
+            // 'all' shows everything
+        }
+
+        // Search logic
+        if($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('body', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Sort logic
+        switch($sort) {
+            case 'oldest':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'alphabetical':
+                $query->orderBy('title', 'asc');
+                break;
+            case 'priority':
+                $query->orderBy('priority', 'desc');
+                break;
+            default: // newest
+                $query->orderBy('created_at', 'desc');
+        }
+
+        $prayerPoints = $query->paginate(12);
 
         // Calculate stats
-        $userId = Auth::id();
         $stats = [
             'total' => Prayer::where('user_id', $userId)->count(),
             'completed' => Prayer::where('user_id', $userId)->where('status', 'completed')->count(),
@@ -46,7 +88,7 @@ class PrayerPointController extends Controller
 
         $stats['pending_instances'] = $pendingInstances;
 
-        return view('prayer-points', compact('prayerPoints', 'stats'));
+        return view('prayer-point.lists', compact('prayerPoints', 'stats'));
     }
 
     public function store(Request $request)
@@ -181,6 +223,27 @@ class PrayerPointController extends Controller
     }
 
     /**
+     * Show prayer point detail page with schedules and comments
+     */
+    public function show(Prayer $prayer)
+    {
+        // Ensure user owns this prayer
+        if ($prayer->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        // Get all schedule instances for this prayer
+        $scheduleInstances = $prayer->scheduleInstances()
+            ->orderBy('scheduled_at')
+            ->get();
+
+        // Get comments with user info
+        $comments = $prayer->comments()->with('user')->orderBy('created_at', 'desc')->get();
+
+        return view('prayer-point.details', compact('prayer', 'scheduleInstances', 'comments'));
+    }
+
+    /**
      * Store a comment on a prayer point
      */
     public function storeComment(Request $request, Prayer $prayer)
@@ -199,22 +262,59 @@ class PrayerPointController extends Controller
     }
 
     /**
-     * Get comments for a prayer point (AJAX)
+     * Delete a comment
      */
-    public function getComments(Request $request, Prayer $prayer)
+    public function deleteComment(Comment $comment)
     {
-        $comments = $prayer->comments()->with('user')->orderBy('created_at', 'desc')->get();
+        // Ensure user owns the comment
+        if ($comment->user_id !== Auth::id()) {
+            abort(403);
+        }
 
-        return response()->json([
-            'success' => true,
-            'comments' => $comments->map(function($comment) {
-                return [
-                    'id' => $comment->id,
-                    'body' => $comment->body,
-                    'user_name' => $comment->user->name ?? 'Anonymous',
-                    'created_at' => $comment->created_at->diffForHumans(),
-                ];
-            })
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully!');
+    }
+
+    /**
+     * Bulk update schedule instances (mark as prayed, missed, or skipped)
+     */
+    public function bulkUpdateInstances(Request $request)
+    {
+        $validated = $request->validate([
+            'instance_ids' => 'required|array',
+            'instance_ids.*' => 'exists:schedule_instances,id',
+            'action' => 'required|in:prayed,missed,skipped',
         ]);
+
+        $userId = Auth::id();
+        $instanceIds = $validated['instance_ids'];
+        $action = $validated['action'];
+
+        // Ensure user owns these instances
+        $instances = ScheduleInstance::whereIn('id', $instanceIds)
+            ->whereHas('prayer', function($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->get();
+
+        foreach ($instances as $instance) {
+            switch ($action) {
+                case 'prayed':
+                    $this->markAsPrayed($instance);
+                    break;
+                case 'missed':
+                    $instance->update([
+                        'status' => 'missed',
+                        'missed_at' => now(),
+                    ]);
+                    break;
+                case 'skipped':
+                    $this->markAsSkipped($instance);
+                    break;
+            }
+        }
+
+        return redirect()->back()->with('success', 'Schedule instances updated successfully!');
     }
 }

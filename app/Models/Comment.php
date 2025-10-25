@@ -16,7 +16,6 @@ class Comment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'prayer_id',
         'body',
     ];
@@ -27,13 +26,5 @@ class Comment extends Model
     public function prayer(): BelongsTo
     {
         return $this->belongsTo(Prayer::class);
-    }
-
-    /**
-     * Get the user that owns the comment.
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }
