@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('server_id')->nullable();
-            $table->unsignedBigInteger('prayer_id')->nullable();
-            $table->date('date');
-            $table->string('time');
-            $table->boolean('status');
+            $table->unsignedBigInteger('prayer_id');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->unsignedSmallInteger('reminder_minutes')->default(15);
+            $table->boolean('status')->default(true);
             $table->softDeletes();
+            $table->index(['prayer_id', 'start_date']);
+            $table->index('status');
             $table->timestamps();
         });
     }

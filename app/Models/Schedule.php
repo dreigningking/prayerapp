@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ScheduleDay;
+use App\Models\ScheduleDate;
+use App\Models\ScheduleTime;
+use App\Models\ScheduleMonth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Schedule extends Model
 {
@@ -18,11 +22,11 @@ class Schedule extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'server_id',
         'prayer_id',
-        'date',
-        'time',
-        'status',
+        'start_date',
+        'end_date',
+        'reminder_minutes',
+        'status'
     ];
 
     /**
@@ -32,6 +36,7 @@ class Schedule extends Model
      */
     protected $casts = [
         'date' => 'date',
+        'times' => 'array',
         'status' => 'boolean',
     ];
 
@@ -46,8 +51,28 @@ class Schedule extends Model
     /**
      * Get the frequency for the schedule.
      */
-    public function frequency(): HasOne
+    public function times(): HasMany
     {
-        return $this->hasOne(Frequency::class);
+        return $this->hasMany(ScheduleTime::class);
+    }
+    public function dates(): HasMany
+    {
+        return $this->hasMany(ScheduleDate::class);
+    }
+    public function days(): HasMany
+    {
+        return $this->hasMany(ScheduleDay::class);
+    }
+    public function months(): HasMany
+    {
+        return $this->hasMany(ScheduleMonth::class);
+    }
+
+    /**
+     * Get the schedule instances for this schedule.
+     */
+    public function scheduleInstances(): HasMany
+    {
+        return $this->hasMany(ScheduleInstance::class);
     }
 }

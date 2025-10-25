@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Comment extends Model
 {
@@ -17,12 +16,18 @@ class Comment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'server_id',
         'user_id',
-        'commentable_id',
-        'commentable_type',
+        'prayer_id',
         'body',
     ];
+
+    /**
+     * Get the prayer that owns the comment.
+     */
+    public function prayer(): BelongsTo
+    {
+        return $this->belongsTo(Prayer::class);
+    }
 
     /**
      * Get the user that owns the comment.
@@ -30,13 +35,5 @@ class Comment extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the parent commentable model.
-     */
-    public function commentable(): MorphTo
-    {
-        return $this->morphTo();
     }
 }
