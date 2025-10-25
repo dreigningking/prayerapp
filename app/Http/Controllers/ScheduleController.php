@@ -24,7 +24,7 @@ class ScheduleController extends Controller
         $now = Carbon::now();
         switch ($filter) {
             case 'today':
-                $startDateTime = $now->copy()->startOfDay();
+                $startDateTime = $now->copy();
                 $endDateTime = $now->copy()->endOfDay();
                 break;
             case 'tomorrow':
@@ -65,16 +65,28 @@ class ScheduleController extends Controller
 
     private function getStats()
     {
-        $totalSchedules = Schedule::count();
-        $todayInstances = ScheduleInstance::whereDate('scheduled_at', today())->count();
-        $activeSchedules = Schedule::where('status', true)->count();
-        $inactiveSchedules = Schedule::where('status', false)->count();
+        $now = now();
+
+        // Today stats
+        $todayTotal = ScheduleInstance::whereDate('scheduled_at', today())->count();
+        $todayPrayed = ScheduleInstance::whereDate('scheduled_at', today())->where('status', 'prayed')->count();
+        $todaySkipped = ScheduleInstance::whereDate('scheduled_at', today())->where('status', 'skipped')->count();
+
+        // This week stats
+        $weekTotal = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfWeek(), $now->endOfWeek()])->count();
+        $weekPrayed = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfWeek(), $now->endOfWeek()])->where('status', 'prayed')->count();
+        $weekSkipped = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfWeek(), $now->endOfWeek()])->where('status', 'skipped')->count();
+
+        // This month stats
+        $monthTotal = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfMonth(), $now->endOfMonth()])->count();
+        $monthPrayed = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfMonth(), $now->endOfMonth()])->where('status', 'prayed')->count();
+        $monthSkipped = ScheduleInstance::whereBetween('scheduled_at', [$now->startOfMonth(), $now->endOfMonth()])->where('status', 'skipped')->count();
 
         return [
-            'total_schedules' => $totalSchedules,
-            'today_instances' => $todayInstances,
-            'active' => $activeSchedules,
-            'inactive' => $inactiveSchedules,
+            'prayed_today' => $todayTotal > 0 ? "{$todayPrayed}/{$todayTotal}" : "0/0",
+            'prayed_week' => $weekTotal > 0 ? "{$weekPrayed}/{$weekTotal}" : "0/0",
+            'prayed_month' => $monthTotal > 0 ? "{$monthPrayed}/{$monthTotal}" : "0/0",
+            'skipped' => "{$todaySkipped} today/{$weekSkipped} this week/{$monthSkipped} this month",
         ];
     }
 }

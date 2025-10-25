@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules');
+    Route::get('analysis', [ScheduleController::class, 'index'])->name('analysis');
     Route::view('support','support')->name('support');
 });
 

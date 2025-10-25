@@ -10,31 +10,31 @@
 
     <div class="schedule-stats">
         <div class="stat-card">
-            <i class="bi bi-calendar-event"></i>
+            <i class="bi bi-check-circle"></i>
             <div class="stat-info">
-                <h3>Total Schedules</h3>
-                <span class="stat-number">{{ $stats['total_schedules'] }}</span>
+                <h3>Prayed Today</h3>
+                <span class="stat-number">{{ $stats['prayed_today'] }}</span>
             </div>
         </div>
         <div class="stat-card">
-            <i class="bi bi-clock-fill"></i>
+            <i class="bi bi-calendar-week"></i>
             <div class="stat-info">
-                <h3>Today's Instances</h3>
-                <span class="stat-number">{{ $stats['today_instances'] }}</span>
+                <h3>Prayed This Week</h3>
+                <span class="stat-number">{{ $stats['prayed_week'] }}</span>
             </div>
         </div>
         <div class="stat-card">
-            <i class="bi bi-play-circle"></i>
+            <i class="bi bi-calendar-month"></i>
             <div class="stat-info">
-                <h3>Active</h3>
-                <span class="stat-number">{{ $stats['active'] }}</span>
+                <h3>Prayed This Month</h3>
+                <span class="stat-number">{{ $stats['prayed_month'] }}</span>
             </div>
         </div>
         <div class="stat-card">
-            <i class="bi bi-pause-circle"></i>
+            <i class="bi bi-skip-forward-circle"></i>
             <div class="stat-info">
-                <h3>Inactive</h3>
-                <span class="stat-number">{{ $stats['inactive'] }}</span>
+                <h3>Skipped</h3>
+                <span class="stat-number">{{ $stats['skipped'] }}</span>
             </div>
         </div>
     </div>
@@ -50,11 +50,17 @@
     </div>
 
     <div class="schedule-list">
+        @php
+            $nearestFutureShown = false;
+            $now = \Carbon\Carbon::now();
+        @endphp
         @if($schedules->count() > 0)
             @foreach($schedules as $instance)
                 <div class="schedule-item">
                     <div class="schedule-header">
-                        <h4>{{ $instance->prayer->title ?? 'Untitled Prayer' }}</h4>
+                        <a href="{{ route('prayer-point.show', $instance->prayer) }}" class="prayer-title-link">
+                            <h4>{{ $instance->prayer->title ?? 'Untitled Prayer' }}</h4>
+                        </a>
                         <div class="instance-badges">
                             <span class="schedule-status {{ $instance->status }}">
                                 {{ ucfirst($instance->status) }}
@@ -68,13 +74,14 @@
                             <p><i class="bi bi-bell"></i> Reminder: {{ $instance->schedule->reminder_minutes }} minutes before</p>
                         @endif
                         <div class="instance-actions">
-                            @if($instance->status === 'pending')
+                            @if($instance->status === 'pending' && $instance->scheduled_at > $now && !$nearestFutureShown)
                                 <button class="btn btn-sm btn-outline-success mark-prayed" data-id="{{ $instance->id }}">
                                     <i class="bi bi-check"></i> Mark as Prayed
                                 </button>
                                 <button class="btn btn-sm btn-outline-warning mark-skipped" data-id="{{ $instance->id }}">
-                                    <i class="bi bi-skip-forward"></i> Mark as Skipped
+                                    <i class="bi bi-skip-forward"></i> Skip Session
                                 </button>
+                                @php $nearestFutureShown = true; @endphp
                             @elseif($instance->status === 'prayed')
                                 <span class="text-success"><i class="bi bi-check-circle"></i> Completed</span>
                             @elseif($instance->status === 'skipped')
@@ -126,16 +133,7 @@
         </div>
     </div>
 
-    <!-- Upcoming prayer instances section -->
-    <div class="upcoming-section">
-        <h3>Today's Prayer Schedule</h3>
-        <div class="upcoming-list" id="upcomingList">
-            <div class="empty-upcoming">
-                <i class="bi bi-clock"></i>
-                <p>No prayers scheduled for today</p>
-            </div>
-        </div>
-    </div>
+    
 @endsection
 
 @push('styles')
@@ -195,6 +193,11 @@
         font-size: 24px;
         font-weight: bold;
         color: #333;
+        line-height: 1.2;
+    }
+
+    .stat-card:nth-child(4) .stat-number {
+        font-size: 18px;
     }
 
     .filter-section {
@@ -242,6 +245,16 @@
         color: #333;
         font-size: 18px;
         font-weight: 600;
+    }
+
+    .prayer-title-link {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s;
+    }
+
+    .prayer-title-link:hover {
+        color: #667eea;
     }
 
     .schedule-status {
@@ -451,9 +464,6 @@ $(document).ready(function() {
         }
     });
 
-    // Load today's prayer instances
-    // loadTodaysPrayers();
-
     // Handle mark as prayed/skipped
     $(document).on('click', '.mark-prayed', function() {
         const instanceId = $(this).data('id');
@@ -476,31 +486,19 @@ function applyFilter(filter, startDate = null, endDate = null) {
     window.location.href = url;
 }
 
-function loadTodaysPrayers() {
-    $.ajax({
-        url: '/',
-        method: 'GET',
-        success: function(response) {
-            if (response.success && response.data.length > 0) {
-                displayTodaysPrayers(response.data);
-            } else {
-                $('#upcomingList').html('<div class="empty-upcoming"><i class="bi bi-clock"></i><p>No prayers scheduled for today</p></div>');
-            }
-        },
-        error: function() {
-            $('#upcomingList').html('<div class="empty-upcoming"><i class="bi bi-exclamation-triangle"></i><p>Unable to load today\'s prayers</p></div>');
-        }
-    });
-}
 
 function displayTodaysPrayers(prayers) {
     let html = '';
+    let nearestFutureShown = false;
+    const now = new Date();
+
     prayers.forEach(function(prayer) {
+        const scheduledAt = new Date(prayer.scheduled_at);
         const time = prayer.scheduled_at.substring(11, 16); // HH:MM format
-        html += `
-            <div class="prayer-instance">
-                <div class="prayer-time">${time}</div>
-                <div class="prayer-title">${prayer.prayer ? prayer.prayer.title : 'Untitled Prayer'}</div>
+        let actions = '';
+
+        if (prayer.status === 'pending' && scheduledAt > now && !nearestFutureShown) {
+            actions = `
                 <div class="prayer-actions">
                     <button class="btn btn-sm btn-outline-success mark-prayed" data-id="${prayer.id}">
                         <i class="bi bi-check"></i> Prayed
@@ -509,6 +507,15 @@ function displayTodaysPrayers(prayers) {
                         <i class="bi bi-skip-forward"></i> Skip
                     </button>
                 </div>
+            `;
+            nearestFutureShown = true;
+        }
+
+        html += `
+            <div class="prayer-instance">
+                <div class="prayer-time">${time}</div>
+                <div class="prayer-title">${prayer.prayer ? prayer.prayer.title : 'Untitled Prayer'}</div>
+                ${actions}
             </div>
         `;
     });

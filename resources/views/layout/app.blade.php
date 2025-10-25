@@ -448,12 +448,16 @@
             <span>Dashboard</span>
         </a>
         <a href="{{ url('prayer-points') }}" class="menu-item @if(request()->path() === 'prayer-points') active @endif">
-            <i class="bi bi-pray"></i>
+            <i class="bi bi-journal-text"></i>
             <span>Prayer Points</span>
         </a>
         <a href="{{ url('schedules') }}" class="menu-item @if(request()->path() === 'schedules') active @endif">
             <i class="bi bi-calendar-event"></i>
             <span>Schedules</span>
+        </a>
+        <a href="{{ url('analysis') }}" class="menu-item @if(request()->path() === 'analysis') active @endif">
+            <i class="bi bi-graph-up"></i>
+            <span>Analysis</span>
         </a>
         <a href="{{ url('support') }}" class="menu-item @if(request()->path() === 'support') active @endif">
             <i class="bi bi-headset"></i>
