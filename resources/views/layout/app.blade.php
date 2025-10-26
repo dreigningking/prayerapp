@@ -70,7 +70,7 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             transition: left 0.3s ease;
             z-index: 1001;
-            padding-top: 70px;
+            
         }
         .side-menu a{
             text-decoration: none;
@@ -443,6 +443,9 @@
 
     <!-- Side Menu -->
     <nav class="side-menu" id="sideMenu">
+        <a href="#" class="d-flex justify-content-center" >
+            <img src="{{asset('images/hands.png')}}" width="100" alt="">
+        </a>
         <a href="{{ url('dashboard') }}" class="menu-item @if(request()->path() === 'dashboard') active @endif">
             <i class="bi bi-house-door-fill"></i>
             <span>Dashboard</span>

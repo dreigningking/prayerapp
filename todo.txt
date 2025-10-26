@@ -1,65 +1,84 @@
-Structured Document Submission from your clients
-Coordination between your tax and file tax  
+Dashboard {
 
-Bring their clients
-Automatate workflow and manage teams
+    - show the next 3 schedules
 
+    - show last 3 schedules with add comments button
 
-Home Page - showing servicess
-Intro
+    - congratulate on yesterday's schedule completion rate.
+    - best performing day
+    - best performing week
+    - best performing month
 
+    - show number of prayer schedules today
+    - show number prayed
+    - show number skipped
+    - show pending
+    - 
+}
+prayerpoint{
+    change stats to {total, active, completed, archived}
+}
+Prayerpoint details {
+    edit prayer point
+    edit schedule {this will add/delete ultimately}
+    delete prayer point {will delete all schedules too}
 
-Clientele Page
-Do you struggle with managing your finances?
+    under schedule Tab, show
+    Filter: Today | Tomorrow | This week | Custom
+    use datatables for pagination
+    remove global mark as prayed | skipped | missed
 
+    under comments tab, show
+    list of comments with delete button and delete modal on each
+    button to add new comments
+    paginate comments with datatables
+}
+schedules page{
+    change stats to show 3 col-12 cards{
+        Today:  total | prayed | skipped
+        Last 7 Days : total | prayed | skipped
+        Last 30days : total | prayed | skipped 
+    }
+    remove this month from filter
+}
+analysis page{
+    ability to analyze for a period, e.get
+    jan - june or mon 1st to friday 5th of april
 
--individuals & organizations
--manage your finances
--manage your taxes
--meet your accounting needs
--get value for your money
--do you accounting or taxes yourself
+    analysis sections
+    1. show prayer category analysis (pie chart & table)
+    2. prayed vs skipped analysis (line chart & table)
+    3. 10 most effective prayer time (table)
+    4. 10 most skipped prayer time (table)
+    5. 10 most effective prayer days/dates (table)
+    6. 10 most skipped prayer days/dates (table)
+    7. prayer point ended - marked finished (table)
+    8. testimonies/comments recorded (table)
 
+}
+updates {
+    updates coming{
+        paid version{
+            share your progress (analysis) with someone via pdf/image
+            save to the cloud - move from phone to phone
+            invite someone to pray with you on specific prayer point
+            testimonies forum
+        },
+        free version{
+            
+        }
+    }
+    share feedback
+}
+support{
+    early subscription for paid version
 
+    give us 
+}
 
-Accountants Page - showing accountants
-Tax consultants
-Certified Public Accountants
-Public Accountants
-Auditors
-
-Managing endclient can be issues 
-getting them to know actual documents they need to provide and at what time can be a mess, multiple emails and phone calls..
-
-rather than getting lost in the process, we can help you manage your clients and get them to know what they need to provide and at what time.
-
-and looking as though you are not professional, use Gbeya
-
-Regulatory compliance: Keeping up with ever-changing tax laws and regulations can be challenging. 
-
-Data security: Accountants handle a lot of confidential client data, so they must protect it from cyberattacks and other threats. 
-
-Payroll management: Managing payroll can be complex, especially with the rise of remote work and diverse work locations.    
-
-Expense management: Expense management can be complex, especially with the rise of remote work and changing laws. 
-
-Accurate financial forecasts: Accounting problems can lead to financial statement errors, fraud, and regulatory noncompliance. 
-
-Hiring and retaining talent: Finding and keeping talented employees can be challenging. 
-
-Keeping up with new technology: Accountants need to keep up with new technologies and tools, such as automation and artificial intelligence. 
-
-
-Tax Authority Page - showing tax authorities
-
-
-
-
-
-Dont get lost in filing your taxes
-Dont pay government more than you need to
-
-
-
-Ensure that it is the targeted audience focused.
+profile icon at the top{
+    dropdown - profile - personal profile + password
+    dropdown - settings - notification + app settings (dark/white)
+    dropdown - Logout
+}
 

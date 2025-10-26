@@ -137,6 +137,8 @@
 @endsection
 
 @push('styles')
+<link rel="stylesheet" href="{{asset('css/dataTables.bootstrap5.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/select.dataTables.min.css')}}">
 <style>
     .page-header {
         margin-bottom: 30px;
@@ -202,7 +204,7 @@
 
     .filter-section {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         margin-bottom: 30px;
         flex-wrap: wrap;
         justify-content: center;
@@ -439,6 +441,9 @@
 @endpush
 
 @push('scripts')
+<script src="{{asset('js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap5.js')}}"></script>
+<script src="{{asset('js/dataTables.select.min.js')}}"></script>
 <script>
 $(document).ready(function() {
     // Handle filter buttons

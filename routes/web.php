@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\PrayerPointController;
 use App\Http\Controllers\ScheduleInstanceController;
+use App\Http\Controllers\AnalysisController;
 
 // Public routes
 // Route::get('run',function(){
@@ -44,7 +45,8 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules');
-    Route::get('analysis', [ScheduleController::class, 'index'])->name('analysis');
+    Route::get('analysis', [AnalysisController::class, 'index'])->name('analysis');
+    Route::get('analysis/data', [AnalysisController::class, 'getData'])->name('analysis.data');
     Route::view('support','support')->name('support');
 });
 

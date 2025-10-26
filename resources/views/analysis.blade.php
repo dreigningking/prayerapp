@@ -97,6 +97,16 @@
     <div class="loading-overlay" id="loadingOverlay" style="display: none;">
         <div class="spinner"></div>
     </div>
+
+    <!-- Hidden Data for JavaScript -->
+    <div id="chartData" style="display: none;">
+        <input type="hidden" id="initialPrayed" value="{{ $chart_data['prayed'] ?? 0 }}">
+        <input type="hidden" id="initialSkipped" value="{{ $chart_data['skipped'] ?? 0 }}">
+        <input type="hidden" id="initialPending" value="{{ $chart_data['pending'] ?? 0 }}">
+        <input type="hidden" id="initialLabels" value="{{ json_encode($chart_data['labels'] ?? []) }}">
+        <input type="hidden" id="initialPrayedData" value="{{ json_encode($chart_data['prayed_data'] ?? []) }}">
+        <input type="hidden" id="initialSkippedData" value="{{ json_encode($chart_data['skipped_data'] ?? []) }}">
+    </div>
 @endsection
 
 @push('styles')
@@ -111,7 +121,7 @@
 
     .filter-controls {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         margin-bottom: 20px;
         flex-wrap: wrap;
     }
@@ -297,9 +307,9 @@
             justify-content: center;
         }
 
-        .date-inputs {
+        /* .date-inputs {
             flex-direction: column;
-        }
+        } */
 
         .form-group {
             min-width: auto;
@@ -343,7 +353,7 @@
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{asset('js/chart.umd.js')}}"></script>
 <script>
 $(document).ready(function() {
     let activityChart = null;
@@ -411,6 +421,14 @@ function updateStats(stats) {
 }
 
 function initializeCharts() {
+    // Get initial data from hidden inputs
+    const initialPrayed = parseInt($('#initialPrayed').val()) || 0;
+    const initialSkipped = parseInt($('#initialSkipped').val()) || 0;
+    const initialPending = parseInt($('#initialPending').val()) || 0;
+    const initialLabels = JSON.parse($('#initialLabels').val()) || [];
+    const initialPrayedData = JSON.parse($('#initialPrayedData').val()) || [];
+    const initialSkippedData = JSON.parse($('#initialSkippedData').val()) || [];
+
     // Activity Chart (Pie Chart)
     const activityCtx = document.getElementById('activityChart').getContext('2d');
     activityChart = new Chart(activityCtx, {
@@ -418,7 +436,7 @@ function initializeCharts() {
         data: {
             labels: ['Prayed', 'Skipped', 'Pending'],
             datasets: [{
-                data: [{{ $chart_data['prayed'] ?? 0 }}, {{ $chart_data['skipped'] ?? 0 }}, {{ $chart_data['pending'] ?? 0 }}],
+                data: [initialPrayed, initialSkipped, initialPending],
                 backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
                 borderWidth: 0
             }]
@@ -439,17 +457,17 @@ function initializeCharts() {
     progressChart = new Chart(progressCtx, {
         type: 'line',
         data: {
-            labels: {{ json_encode($chart_data['labels'] ?? []) }},
+            labels: initialLabels,
             datasets: [{
                 label: 'Prayed',
-                data: {{ json_encode($chart_data['prayed_data'] ?? []) }},
+                data: initialPrayedData,
                 borderColor: '#28a745',
                 backgroundColor: 'rgba(40, 167, 69, 0.1)',
                 tension: 0.4,
                 fill: true
             }, {
                 label: 'Skipped',
-                data: {{ json_encode($chart_data['skipped_data'] ?? []) }},
+                data: initialSkippedData,
                 borderColor: '#dc3545',
                 backgroundColor: 'rgba(220, 53, 69, 0.1)',
                 tension: 0.4,

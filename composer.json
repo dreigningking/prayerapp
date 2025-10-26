@@ -12,6 +12,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "nativephp/mobile": "^1.12",
         "tzsk/otp": "^9.0"
     },
     "require-dev": {
